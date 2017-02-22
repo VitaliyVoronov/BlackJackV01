@@ -1,19 +1,17 @@
 package ua.blackjack.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import org.xml.sax.SAXException;
 import ua.blackjack.model.Card;
 import ua.blackjack.model.CardDeck;
-import ua.blackjack.model.MySettings;
 import ua.blackjack.model.Player;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * It's controller for blakjack game
@@ -29,7 +27,7 @@ public class Controller {
     private int minBet;
     private int money;
     private int bet;
-    private Connector connect;
+    private PlayerDAOImpl connect;
     private ArrayList<Card> shoes = null;
     private Player dealer;
     private Player player;
@@ -48,7 +46,7 @@ public class Controller {
         minBet = 1;
         decks = 1;
         money = 50;
-        connect = new Connector();
+        connect = new PlayerDAOImpl();
         continuePushed = true;
         isGame = false;
         massage = "";
@@ -56,7 +54,7 @@ public class Controller {
         creatDecks(decks);
         mixShoes();
         dealer = new Player("Dealer");
-        fileName = "web/playerSettings.xml";
+        fileName = "playerSettings.xml";
     }
 
     public void writeSettingsToXml(){

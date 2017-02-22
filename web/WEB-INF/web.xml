@@ -5,12 +5,21 @@
          version="3.1">
 
     <servlet>
-        <servlet-name>MyServlet</servlet-name>
-        <servlet-class>ua.blackjack.controller.MyServlet</servlet-class>
+        <servlet-name>MainServlet</servlet-name>
+        <servlet-class>ua.blackjack.controller.MainServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>MyServlet</servlet-name>
-        <url-pattern>/servlet</url-pattern>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>ua.blackjack.controller.RegistrationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 </web-app>

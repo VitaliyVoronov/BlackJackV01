@@ -1,5 +1,6 @@
-<%@ page import="ua.blackjack.controller.MyServlet" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="ua.blackjack.controller.MainServlet" %>
+<%@ page import="java.util.ArrayList" %>
+<%--
   Created by IntelliJ IDEA.
   User: Администратор
   Date: 14.11.2016
@@ -13,7 +14,7 @@
 </head>
 <body>
     <%
-        MyServlet ser = new MyServlet();
+        MainServlet ser = new MainServlet();
         ArrayList l = (ArrayList) request.getSession().getAttribute("list");
         for(int i = 0; i < l.size(); i++){
             out.write(""+l.get(i));

@@ -18,7 +18,7 @@
             out.println(request.getSession().getAttribute("massageReg"));
         }
     %>
-    <form action='main.jsp' method='get'>
+    <form action='/registration' method='POST'>
         <label for='nameReg'>Name</label>
         <input required type='text' name='nameReg'>
 
@@ -29,7 +29,7 @@
         <input required type='password' name='passwordReg'/>
         <input type='submit' name='action' value='Sign up' />
     </form>
-    <form action="index.jsp" method="get">
+    <form action="/main" method="get">
         <input type="submit" value="Main page"/>
     </form>
 

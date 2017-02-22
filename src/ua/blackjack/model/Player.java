@@ -2,6 +2,7 @@ package ua.blackjack.model;
 
 public class Player {
 
+	private int playerID;
 	private String name = null;
 	private int money = 0;
 	private int sumNumbers = 0;
@@ -27,6 +28,14 @@ public class Player {
 	public void setName(String name) {
 		this.name = name;
 		setSettingsName();
+	}
+
+	public void setPlayerID(int playerID) {
+		this.playerID = playerID;
+	}
+
+	public int getPlayerID() {
+		return playerID;
 	}
 
 	public void setSumNumbers(int sumNumbers) {
