@@ -18,11 +18,11 @@
         String query = request.getParameter("action");
 
 
-        if (query.equals("Registration")) {
-            String redirectURL = "registration.jsp";
-            response.sendRedirect(redirectURL);
+//        if (query.equals("Registration")) {
+//            String redirectURL = "registration.jsp";
+//            response.sendRedirect(redirectURL);
 
-        } else if (query.equals("Sign up")){
+        if (query.equals("Sign up")){
                 if (con.isAvailableName(request.getParameter("nameReg"))) {
                     con.addPlayerToDB(request.getParameter("nameReg"), request.getParameter("passwordReg"), request.getParameter("emailReg"));
                     String redirectURL = "index.jsp";

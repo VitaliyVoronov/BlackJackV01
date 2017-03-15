@@ -65,7 +65,7 @@
 
               <input type='submit' value='Enter' name="action"/>
           </form>
-          <form action='/registration.jsp' method='post'>
+          <form action='registration' method='post'>
               <input type='submit' value='Registration' name='action'/>
           </form>
           <form action='main.jsp' method='get'>

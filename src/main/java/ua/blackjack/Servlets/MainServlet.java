@@ -1,4 +1,4 @@
-package ua.blackjack.controller;
+package ua.blackjack.Servlets;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +21,7 @@ public class MainServlet extends HttpServlet {
         if(request.getRequestURI().equals("/main")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
-        } else if (request.getParameter("action").equals("Registration")){
+        } else if (request.getRequestURI().equals("/registration")){
             RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
             dispatcher.forward(request, response);
         }

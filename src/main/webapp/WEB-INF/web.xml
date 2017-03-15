@@ -6,20 +6,12 @@
 
     <servlet>
         <servlet-name>MainServlet</servlet-name>
-        <servlet-class>ua.blackjack.controller.MainServlet</servlet-class>
+        <servlet-class>ua.blackjack.Servlets.MainServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>RegistrationServlet</servlet-name>
-        <servlet-class>ua.blackjack.controller.RegistrationServlet</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>RegistrationServlet</servlet-name>
-        <url-pattern>/registration</url-pattern>
-    </servlet-mapping>
 </web-app>
