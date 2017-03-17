@@ -1,6 +1,7 @@
 <%@ page import="ua.blackjack.controller.Controller" %>
 <%@ page import="ua.blackjack.model.Card" %>
 <%@ page import="ua.blackjack.model.Player" %>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%--
@@ -19,6 +20,7 @@
     <div id="border">
         <div id="header">
             <%
+                PrintWriter myOut = response.getWriter();
                 Controller con = (Controller) request.getSession().getAttribute("controller");
                 String query = ""+request.getQueryString();
 
@@ -51,32 +53,32 @@
                 if (query.equals("bet=10") && !con.isDealPushed() && con.isContinuePushed()){
                     con.takeMoneyFromPlayerToBet(10);
                 }
-                out.println("Your bet: "+con.getBet());
+                myOut.println("Your bet: "+con.getBet());
 
             %>
         </div>
         <div id="shoes">
             <%
                     for (int i = 0; i < con.getShoes().size(); i++) {
-                        Card c = con.getShoes().get(i);
-                        out.println("<img src='" + c.getShirt() + "' alt='card' class='shoes'' />");
+                        Card c = (Card) con.getShoes().get(i);
+                        myOut.println("<img src='" + c.getShirt() + "' alt='card' class='shoes'' />");
                     }
             %>
         </div>
         <div id="players">
         <div id="dealerHand">
             <%
-                out.println(dealer.getName());
+                myOut.println(dealer.getName());
                 if(query.equals("action=STAND") && con.isGame()){
                     con.dealCardsToDealer();
                     con.setGameFalse();
                 }
                 if (con.isGame() || !con.isContinuePushed()) {
                     for (int i = 0; i < dealer.getHand().getCards().size(); i++) {
-                        Card c = dealer.getHand().getCards().get(i);
-                        out.println("<img src='" + c.getFace() + "' alt='card' />");
+                        Card c = (Card) dealer.getHand().getCards().get(i);
+                        myOut.println("<img src='" + c.getFace() + "' alt='card' />");
                     }
-                    out.println(dealer.getSumNumbers());
+                    myOut.println(dealer.getSumNumbers());
                 }
 
             %>
@@ -84,17 +86,17 @@
         <div id="playerHand">
 
             <%
-                out.println(player.getName()+"</br>");
-                out.println(player.getMoney());
+                myOut.println(player.getName()+"</br>");
+                myOut.println(player.getMoney());
                 if (query.equals("action=HIT")) {
                     con.dealOneCardToPlayer();
                 }
                 if (con.isGame() || !con.isContinuePushed()) {
                     for (int i = 0; i < player.getHand().getCards().size(); i++) {
-                        Card c = player.getHand().getCards().get(i);
-                        out.println("<img src='" + c.getFace() + "' alt='card' />");
+                        Card c = (Card) player.getHand().getCards().get(i);
+                        myOut.println("<img src='" + c.getFace() + "' alt='card' />");
                     }
-                    out.println(player.getSumNumbers());
+                    myOut.println(player.getSumNumbers());
                 }
 
             %>
@@ -122,14 +124,14 @@
             <form method="get" action="">
                 <input  name="action" type="submit" value="CONTINUE" >
             </form>
-            <form method="get" action="index.jsp">
+            <form method="get" action="login.jsp">
                 <input  name="action" type="submit" value="Main menu" >
             </form>
 
         </div>
 
         <div id="footer">
-            <%out.println(con.getMassage());%>
+            <%=con.getMassage()%>
 
         </div>
         </div>

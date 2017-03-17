@@ -56,7 +56,6 @@ public class PlayerDAOImpl implements PlayerDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public boolean isAvailableName(String name) {
@@ -105,7 +104,6 @@ public class PlayerDAOImpl implements PlayerDAO {
             player.setEmail(rs.getString(4));
         }
         rs.close();
-        System.out.println("!!!"+player.getName());
         return player;
     }
 

@@ -9,16 +9,12 @@
 
 <html>
 <head>
-    <title>Registration</title>
+    <title>Registration form</title>
 
 </head>
 <body>
-    <%
-        if((String)request.getSession().getAttribute("massageReg") != null){
-            out.println(request.getSession().getAttribute("massageReg"));
-        }
-    %>
-    <form action='/registration' method='POST'>
+    ${message}
+    <form action='/signup' method='GET'>
         <label for='nameReg'>Name</label>
         <input required type='text' name='nameReg'>
 
@@ -29,7 +25,7 @@
         <input required type='password' name='passwordReg'/>
         <input type='submit' name='action' value='Sign up' />
     </form>
-    <form action="/main" method="get">
+    <form action="/login" method="get">
         <input type="submit" value="Main page"/>
     </form>
 

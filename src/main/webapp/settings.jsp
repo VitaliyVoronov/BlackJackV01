@@ -18,9 +18,10 @@
     </style>
 </head>
 <body>
+${message}
 <div class="center">
-    <form action='main.jsp' method='get'>
-        <label for=' decks'>Number of decks</label>
+    <form action='/saveSettings' method='get'>
+        <label for='decks'>Number of decks</label>
         <input required type='number' name='decks'>
 
         <label for='minBet'>Min bet</label>
@@ -34,7 +35,7 @@
 
         <input type='submit' value='Save settings' name='action' />
     </form>
-    <form action="index.jsp" method="get">
+    <form action="/login" method="get">
         <input type="submit" value="Main page"/>
     </form>
 </div>

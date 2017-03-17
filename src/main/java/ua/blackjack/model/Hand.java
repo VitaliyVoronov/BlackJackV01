@@ -7,7 +7,7 @@ public class Hand {
 	ArrayList<Card> cards;
 
 	public Hand() {
-		cards = new ArrayList<Card>();
+		cards = new ArrayList();
 	}
 	
 	public void setCard(Card card) {

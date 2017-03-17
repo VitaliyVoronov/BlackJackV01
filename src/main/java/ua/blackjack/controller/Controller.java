@@ -98,7 +98,7 @@ public class Controller {
 
     }
 
-    public void createPlayerFromDB(String name) {
+    public void getPlayerFromDB(String name) {
         try {
             player = connect.getPlayerFromDB(name);
         } catch (SQLException e) {
