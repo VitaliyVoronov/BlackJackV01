@@ -1,6 +1,7 @@
-package ua.blackjack.Servlets;
+package ua.blackjack.servlets;
 
 import ua.blackjack.controller.Controller;
+import ua.blackjack.model.Card;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author vitaliy
@@ -20,7 +22,7 @@ public class MainServlet extends HttpServlet {
 //        PrintWriter out = response.getWriter();
         //out.println("<h1>" + "HI!" + "</h1>");
         //out.println("<h1>" + request.getRequestURI() + "</h1>");
-        if(request.getRequestURI().equals("/")) {
+        if(request.getRequestURI().equals("/main")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
 
@@ -77,8 +79,23 @@ public class MainServlet extends HttpServlet {
         } else if (request.getRequestURI().equals("/login")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
-        }
+        } else if (request.getRequestURI().equals("/test")) {
 
+            PrintWriter out = response.getWriter();
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>BlackJack</title>");
+            out.println("</head>");
+            out.println("<body>");
+            for (int i = 0; i < con.getShoes().size(); i++) {
+                Card c = con.getShoes().get(i);
+                System.out.println(con.getShoes());
+                out.println("<img src='resources/shirt.png' alt='card' class='shoes' />");
+            }
+            out.println("</body>");
+            out.println("</html>");
+
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

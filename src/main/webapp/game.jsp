@@ -4,13 +4,7 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Администратор
-  Date: 03.11.2016
-  Time: 13:50
-  To change this template use File | Settings | File Templates.
---%>
+
 <html>
 <head>
     <title>BlackJack</title>
@@ -61,6 +55,7 @@
             <%
                     for (int i = 0; i < con.getShoes().size(); i++) {
                         Card c = (Card) con.getShoes().get(i);
+                        System.out.println(con.getShoes());
                         myOut.println("<img src='" + c.getShirt() + "' alt='card' class='shoes'' />");
                     }
             %>

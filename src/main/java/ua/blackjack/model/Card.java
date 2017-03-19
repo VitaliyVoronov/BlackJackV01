@@ -20,8 +20,8 @@ public class Card {
 	}
 
 	public Card(String dignity, String suit) {
-		face  = "resources/";
-		shirt = "resources/shirt.png";
+		face  = "resources/images/";
+		shirt = "resources/images/shirt.png";
 		this.dignity = dignity;
 		this.suit = suit;
 		setNumber();

@@ -1,4 +1,3 @@
-<%@ page import="ua.blackjack.controller.Controller" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.

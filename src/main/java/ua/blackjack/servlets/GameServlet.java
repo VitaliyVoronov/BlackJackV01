@@ -1,4 +1,4 @@
-package ua.blackjack.Servlets;
+package ua.blackjack.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

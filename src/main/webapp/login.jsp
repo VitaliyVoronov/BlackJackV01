@@ -1,13 +1,5 @@
-<%@ page import="ua.blackjack.controller.Controller" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Администратор
-  Date: 03.11.2016
-  Time: 13:50
-  To change this template use File | Settings | File Templates.
---%>
 
 <html>
   <head>
@@ -24,6 +16,7 @@
   <body>
   ${message}
   <div class="center">
+
       <%--<%--%>
           <%--String query = request.getParameter("action");--%>
               <%--if (query != null) {--%>
@@ -50,6 +43,7 @@
               <%--}--%>
           <%--}--%>
       <%--%>--%>
+
           <form action='/enter' method='get'>
               <label for='name'>Name</label>
               <input required type='text' name='name'>
