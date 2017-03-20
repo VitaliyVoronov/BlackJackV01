@@ -10,113 +10,95 @@
     <title>BlackJack</title>
     <link href="styleGame.css" type="text/css" rel="stylesheet"/>
 </head>
-    <body>
+<body>
     <div id="border">
         <div id="header">
-            <%
-                PrintWriter myOut = response.getWriter();
-                Controller con = (Controller) request.getSession().getAttribute("controller");
-                String query = ""+request.getQueryString();
+            <%--<%--%>
+                <%--PrintWriter myOut = response.getWriter();--%>
+                <%--Controller con = (Controller) request.getSession().getAttribute("controller");--%>
+                <%--String query = ""+request.getQueryString();--%>
 
-                Player player = con.getPlayer();
-                Player dealer = con.getDealer();
+                <%--Player player = con.getPlayer();--%>
+                <%--Player dealer = con.getDealer();--%>
+            <%--%>--%>
+                <%--if (query.equals("action=DEAL") && con.isContinuePushed()){--%>
+                    <%--con.firstDealToAll();--%>
+                    <%--if (player.getHand().getCards().size() > 0 && dealer.getHand().getCards().size() > 0){--%>
+                        <%--con.setContinuePushed(false);--%>
+                        <%--con.setGameTrue();--%>
+                    <%--}--%>
+                <%--}--%>
 
-                if (query.equals("action=DEAL") && con.isContinuePushed()){
-                    con.firstDealToAll();
-                    if (player.getHand().getCards().size() > 0 && dealer.getHand().getCards().size() > 0){
-                        con.setContinuePushed(false);
-                        con.setGameTrue();
-                    }
-                }
+                <%--if(query.equals("action=CONTINUE") && !con.isGame()){--%>
+                    <%--con.setContinuePushed(true);--%>
+                    <%--con.clearTable();--%>
+                    <%--con.countWin();--%>
+                    <%--con.clearBet();--%>
+                    <%--con.clearPoints();--%>
+                <%--}--%>
 
-                if(query.equals("action=CONTINUE") && !con.isGame()){
-                    con.setContinuePushed(true);
-                    con.clearTable();
-                    con.countWin();
-                    con.clearBet();
-                    con.clearPoints();
-                }
+                <%--if (query.equals("bet=1") && !con.isDealPushed() && con.isContinuePushed()){--%>
+                    <%--con.takeMoneyFromPlayerToBet(1);--%>
+                <%--}--%>
+                <%--if (query.equals("bet=5") && !con.isDealPushed() && con.isContinuePushed()){--%>
+                    <%--con.takeMoneyFromPlayerToBet(5);--%>
 
-                if (query.equals("bet=1") && !con.isDealPushed() && con.isContinuePushed()){
-                    con.takeMoneyFromPlayerToBet(1);
-                }
-                if (query.equals("bet=5") && !con.isDealPushed() && con.isContinuePushed()){
-                    con.takeMoneyFromPlayerToBet(5);
+                <%--}--%>
+                <%--if (query.equals("bet=10") && !con.isDealPushed() && con.isContinuePushed()){--%>
+                    <%--con.takeMoneyFromPlayerToBet(10);--%>
+                <%--}--%>
+                <%--myOut.println("Your bet: "+con.getBet());--%>
+            <%--%>--%>
+                <%--<c:set var="bet" value="bet"/>--%>
+                <h3>Your bet: ${bet}</h3>
 
-                }
-                if (query.equals("bet=10") && !con.isDealPushed() && con.isContinuePushed()){
-                    con.takeMoneyFromPlayerToBet(10);
-                }
-                myOut.println("Your bet: "+con.getBet());
-
-            %>
         </div>
         <div id="shoes">
-            <%
-                    for (int i = 0; i < con.getShoes().size(); i++) {
-                        Card c = (Card) con.getShoes().get(i);
-                        System.out.println(con.getShoes());
-                        myOut.println("<img src='" + c.getShirt() + "' alt='card' class='shoes'' />");
-                    }
-            %>
+
+            <c:forEach var="shirt" items="${shirts}">
+                <img src='${shirt}' alt='card' class='shoes' /></p>
+            </c:forEach>
+
         </div>
         <div id="players">
         <div id="dealerHand">
-            <%
-                myOut.println(dealer.getName());
-                if(query.equals("action=STAND") && con.isGame()){
-                    con.dealCardsToDealer();
-                    con.setGameFalse();
-                }
-                if (con.isGame() || !con.isContinuePushed()) {
-                    for (int i = 0; i < dealer.getHand().getCards().size(); i++) {
-                        Card c = (Card) dealer.getHand().getCards().get(i);
-                        myOut.println("<img src='" + c.getFace() + "' alt='card' />");
-                    }
-                    myOut.println(dealer.getSumNumbers());
-                }
-
-            %>
+            ${nameDealer}
+            <c:forEach var="card" items="${cardsDealer}">
+                <img src='${card}' alt='card' />
+            </c:forEach>
+            ${sumNumbersDealer}
         </div>
         <div id="playerHand">
 
-            <%
-                myOut.println(player.getName()+"</br>");
-                myOut.println(player.getMoney());
-                if (query.equals("action=HIT")) {
-                    con.dealOneCardToPlayer();
-                }
-                if (con.isGame() || !con.isContinuePushed()) {
-                    for (int i = 0; i < player.getHand().getCards().size(); i++) {
-                        Card c = (Card) player.getHand().getCards().get(i);
-                        myOut.println("<img src='" + c.getFace() + "' alt='card' />");
-                    }
-                    myOut.println(player.getSumNumbers());
-                }
+            ${namePlayer}
+            ${moneyPlayer}
+            <c:forEach var="card" items="${cardsPlayer}">
+                <img src='${card}' alt='card' />
+            </c:forEach>
+            ${sumNumbersPlayer}
 
-            %>
         </div>
         </div>
         <div id="menu">
-            <form method="get" action="">
+            <form method="get" action="/game">
                 <input  name="action" type="submit" value="HIT" >
             </form>
-            <form method="get" action="">
+            <form method="get" action="/game">
                 <input  name="action" type="submit" value="STAND" >
             </form>
-            <form method="get" action="">
+            <form method="get" action="/game">
                 <input  name="bet" type="submit" value="1" >
             </form>
-            <form method="get" action="">
+            <form method="get" action="/game">
                 <input  name="bet" type="submit" value="5" >
             </form>
-            <form method="get" action="">
+            <form method="get" action="/game">
                 <input  name="bet" type="submit" value="10" >
             </form>
-            <form method="get" action="">
+            <form method="get" action="/game">
                 <input  name="action" type="submit" value="DEAL" >
             </form>
-            <form method="get" action="">
+            <form method="get" action="/game">
                 <input  name="action" type="submit" value="CONTINUE" >
             </form>
             <form method="get" action="login.jsp">
@@ -126,7 +108,7 @@
         </div>
 
         <div id="footer">
-            <%=con.getMassage()%>
+            ${message}
 
         </div>
         </div>

@@ -47,4 +47,14 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <!--<servlet>-->
+        <!--<servlet-name>GameServlet</servlet-name>-->
+        <!--<servlet-class>ua.blackjack.servlets.GameServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>GameServlet</servlet-name>-->
+        <!--<url-pattern>/game</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+
 </web-app>

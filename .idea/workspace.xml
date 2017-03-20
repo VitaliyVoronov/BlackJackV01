@@ -7,72 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60e385f-597d-4f4b-80a4-4dad8ebb7840" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/Servlets/GameServlet.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/GameServlet.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/Servlets/MainServlet.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/10c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/10c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/10d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/10d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/10h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/10h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/10p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/10p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/2c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/2c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/2d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/2d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/2h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/2h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/2p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/2p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/3c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/3c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/3d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/3d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/3h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/3h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/3p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/3p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/4c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/4c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/4d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/4d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/4h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/4h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/4p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/4p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/5c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/5c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/5d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/5d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/5h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/5h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/5p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/5p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/6c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/6c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/6d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/6d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/6h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/6h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/6p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/6p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/7c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/7c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/7d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/7d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/7h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/7h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/7p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/7p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/8c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/8c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/8d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/8d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/8h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/8h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/8p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/8p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/9c.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/9c.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/9d.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/9d.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/9h.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/9h.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/9p.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/9p.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/ac.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/ac.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/ad.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/ad.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/ah.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/ah.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/ap.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/ap.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/bjtable.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/bjtable.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/jc.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/jc.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/jd.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/jd.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/jh.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/jh.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/jp.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/jp.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/kc.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/kc.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/kd.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/kd.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/kh.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/kh.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/kp.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/kp.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/qc.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/qc.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/qd.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/qd.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/qh.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/qh.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/qp.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/qp.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/resources/shirt.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/shirt.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/main.jsp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackJackV01.iml" afterPath="$PROJECT_DIR$/BlackJackV01.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/model/Card.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/model/Card.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/GameServlet.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/GameServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/game.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/game.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/registration.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/registration.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/settings.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/settings.jsp" />
     </list>
     <ignored path="BlackJackV01.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -127,62 +67,90 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MySettings.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/model/MySettings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="684">
+              <caret line="56" column="26" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="56" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-756">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/main.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="55" lean-forward="false" selection-start-line="0" selection-start-column="55" selection-end-line="0" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="game.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/game.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="58" column="100" lean-forward="false" selection-start-line="58" selection-start-column="100" selection-end-line="58" selection-end-column="100" />
+            <state relative-caret-position="165">
+              <caret line="70" column="29" lean-forward="true" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playerSettings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/playerSettings.xml">
+      <file leaf-file-name="MainServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="75">
+              <caret line="77" column="77" lean-forward="false" selection-start-line="77" selection-start-column="77" selection-end-line="77" selection-end-column="77" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/settings.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Card.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="styleGame.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/styleGame.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-396">
+              <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+              <folding>
+                <element signature="e#4046#4047#0" expanded="true" />
+                <element signature="e#4074#4075#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/model/Card.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="22" column="34" lean-forward="false" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-              <folding />
+            <state relative-caret-position="241">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding>
+                <element signature="e#1096#1097#0" expanded="true" />
+                <element signature="e#1115#1116#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -218,7 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/ua/blackjack/model/CardDeck.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/main.jsp" />
         <option value="$PROJECT_DIR$/web/style.css" />
         <option value="$PROJECT_DIR$/src/ua/blackjack/controller/FileWriter.java" />
@@ -262,13 +229,14 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/test.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/settings.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/registration.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/main.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/game.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/model/Card.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/GameServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/game.jsp" />
       </list>
     </option>
   </component>
@@ -548,41 +516,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BlackJackV01" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BlackJackV01" />
+              <option name="myItemId" value="blackjack" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="servlets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -609,36 +551,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="blackjack" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BlackJackV01" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BlackJackV01" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blackjack" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1303,12 +1215,12 @@
       <workItem from="1489563063545" duration="11300000" />
       <workItem from="1489678124006" duration="77000" />
       <workItem from="1489678218448" duration="33194000" />
-      <workItem from="1489856798665" duration="13685000" />
+      <workItem from="1489856798665" duration="26140000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="316251000" />
+    <option name="totallyTimeSpent" value="328706000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1343,12 +1255,12 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.4969697" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.4969697" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24662162" sideWeight="0.63318115" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1266892" sideWeight="0.4939394" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2090909" sideWeight="0.84753364" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2090909" sideWeight="0.15246637" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32263514" sideWeight="0.63318115" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08277027" sideWeight="0.4939394" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2090909" sideWeight="0.80798006" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2090909" sideWeight="0.15461347" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31666666" sideWeight="0.27559054" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2090909" sideWeight="0.19201995" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1402,7 +1314,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ua/blackjack/controller/HomeAccounting.java" />
     <entry file="file://$PROJECT_DIR$/src/ua/blackjack/controller/dd.java" />
     <entry file="file://$PROJECT_DIR$/src/ua/blackjack/controller/ServletController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/model/PlayerDAO.java">
@@ -1489,6 +1400,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-956">
           <caret line="10" column="48" lean-forward="false" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1517,6 +1429,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="22" />
+          <folding>
+            <marker date="1489771400855" expanded="true" signature="354:394" ph="INSERT INTO players... " />
+            <marker date="1489771400855" expanded="true" signature="433:462" ph="DELETE FROM " />
+            <marker date="1489771400855" expanded="true" signature="501:532" ph="SELECT * FRO... players" />
+            <marker date="1489771400855" expanded="true" signature="571:595" ph="UPDATE black... " />
+            <marker date="1489771400855" expanded="true" signature="1501:1626" ph="INSERT INTO players... " />
+            <marker date="1489771400855" expanded="true" signature="1867:1922" ph="SELECT name players" />
+            <marker date="1489771400855" expanded="true" signature="2358:2435" ph="SELECT name players" />
+            <marker date="1489771400855" expanded="true" signature="2918:2963" ph="SELECT * FRO... players" />
+            <marker date="1489771400855" expanded="true" signature="3285:3306" ph="SELECT * FRO... players" />
+            <marker date="1489771400855" expanded="true" signature="3907:4021" ph="INSERT INTO players... " />
+            <marker date="1489771400855" expanded="true" signature="4390:4427" ph="DELETE FROM " />
+            <marker date="1489771400855" expanded="true" signature="4906:4961" ph="SELECT * FRO... players" />
+            <marker date="1489771400855" expanded="true" signature="5550:5743" ph="UPDATE black... " />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1567,63 +1494,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/styleGame.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="30" column="33" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2970#2971#0" expanded="false" />
-            <element signature="e#3011#3012#0" expanded="false" />
-            <element signature="e#4728#4729#0" expanded="false" />
-            <element signature="e#4757#4758#0" expanded="false" />
-            <element signature="e#4790#4791#0" expanded="false" />
-            <element signature="e#4819#4820#0" expanded="false" />
-            <element signature="e#6259#6260#0" expanded="false" />
-            <element signature="e#6289#6290#0" expanded="false" />
-            <element signature="e#6335#6336#0" expanded="false" />
-            <element signature="e#6373#6374#0" expanded="false" />
-            <element signature="e#6408#6409#0" expanded="false" />
-            <element signature="e#6439#6440#0" expanded="false" />
-            <element signature="e#6466#6467#0" expanded="false" />
-            <element signature="e#6492#6493#0" expanded="false" />
-            <element signature="e#6525#6526#0" expanded="false" />
-            <element signature="e#6554#6555#0" expanded="false" />
-            <element signature="e#6588#6589#0" expanded="false" />
-            <element signature="e#6618#6619#0" expanded="false" />
-            <element signature="e#6649#6650#0" expanded="false" />
-            <element signature="e#6678#6679#0" expanded="false" />
-            <element signature="e#6716#6717#0" expanded="false" />
-            <element signature="e#6750#6751#0" expanded="false" />
-            <element signature="e#6805#6806#0" expanded="false" />
-            <element signature="e#6851#6852#0" expanded="false" />
-            <element signature="e#6888#6889#0" expanded="false" />
-            <element signature="e#6921#6922#0" expanded="false" />
-            <element signature="e#6974#6975#0" expanded="false" />
-            <element signature="e#7018#7019#0" expanded="false" />
-            <element signature="e#7059#7060#0" expanded="false" />
-            <element signature="e#7096#7097#0" expanded="false" />
-            <element signature="e#7157#7158#0" expanded="false" />
-            <element signature="e#7209#7210#0" expanded="false" />
-            <element signature="e#7582#7583#0" expanded="false" />
-            <element signature="e#7605#7606#0" expanded="false" />
-            <element signature="e#7811#7812#0" expanded="false" />
-            <element signature="e#7863#7864#0" expanded="false" />
-            <element signature="e#8172#8173#0" expanded="false" />
-            <element signature="e#8202#8203#0" expanded="false" />
-            <element signature="e#8245#8246#0" expanded="false" />
-            <element signature="e#8276#8277#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/images/shirt.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1657,70 +1527,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/GameServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="69" column="64" lean-forward="true" selection-start-line="69" selection-start-column="51" selection-end-line="69" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-756">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/settings.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/registration.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="55" lean-forward="false" selection-start-line="0" selection-start-column="55" selection-end-line="0" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/game.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="58" column="100" lean-forward="false" selection-start-line="58" selection-start-column="100" selection-end-line="58" selection-end-column="100" />
           <folding />
         </state>
       </provider>
@@ -1733,10 +1543,98 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-756">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="56" column="26" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="56" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/model/MySettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/GameServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/model/Card.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="22" column="34" lean-forward="false" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        <state relative-caret-position="241">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="e#1096#1097#0" expanded="true" />
+            <element signature="e#1115#1116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding>
+            <element signature="e#4046#4047#0" expanded="true" />
+            <element signature="e#4074#4075#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/settings.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/styleGame.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-396">
+          <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="77" column="77" lean-forward="false" selection-start-line="77" selection-start-column="77" selection-end-line="77" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="41" column="87" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="41" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/game.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="70" column="29" lean-forward="true" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
           <folding />
         </state>
       </provider>
