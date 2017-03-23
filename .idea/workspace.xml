@@ -7,27 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60e385f-597d-4f4b-80a4-4dad8ebb7840" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileSaxParser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileWriter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/dbblackjack.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/playerSettings.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/MyFileSaxParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/MyFileWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/blackjack" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/playerSettings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/BlackJackV01-1.0-SNAPSHOT/playerSettings.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/ConfigurationManager.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/ConfigurationManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/JdbcConnector.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/JdbcConnector.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/MyFileReader.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileReader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/PlayerDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/PlayerDAOImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/BlackJackV01_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/BlackJackV01_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlackJackV01.iml" afterPath="$PROJECT_DIR$/BlackJackV01.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/model/MySettings.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/model/MySettings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileReader.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileSaxParser.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileSaxParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileWriter.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/ConfigurationManager.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/ConfigurationManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" afterPath="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/game.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/game.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/BlackJackV01-1.0-SNAPSHOT/game.jsp" afterPath="$PROJECT_DIR$/target/BlackJackV01-1.0-SNAPSHOT/game.jsp" />
     </list>
     <ignored path="BlackJackV01.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,126 +72,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MySettings.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/model/MySettings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-              <folding>
-                <element signature="e#336#337#0" expanded="false" />
-                <element signature="e#368#369#0" expanded="false" />
-                <element signature="e#407#408#0" expanded="false" />
-                <element signature="e#441#442#0" expanded="false" />
-                <element signature="e#482#483#0" expanded="false" />
-                <element signature="e#518#519#0" expanded="false" />
-                <element signature="e#559#560#0" expanded="false" />
-                <element signature="e#595#596#0" expanded="false" />
-                <element signature="e#634#635#0" expanded="false" />
-                <element signature="e#668#669#0" expanded="false" />
-                <element signature="e#699#700#0" expanded="false" />
-                <element signature="e#726#727#0" expanded="false" />
-                <element signature="e#755#756#0" expanded="false" />
-                <element signature="e#783#784#0" expanded="false" />
-                <element signature="e#813#814#0" expanded="false" />
-                <element signature="e#842#843#0" expanded="false" />
-                <element signature="e#872#873#0" expanded="false" />
-                <element signature="e#901#902#0" expanded="false" />
-                <element signature="e#930#931#0" expanded="false" />
-                <element signature="e#958#959#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="75" lean-forward="false" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-288">
-              <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="playerSettings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/playerSettings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JdbcConnector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/JdbcConnector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerDAOImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/PlayerDAOImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+            <state relative-caret-position="-66">
+              <caret line="23" column="61" lean-forward="false" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
               <folding>
-                <marker date="1490267928515" expanded="true" signature="348:388" ph="INSERT INTO players... " />
-                <marker date="1490267928515" expanded="true" signature="427:456" ph="DELETE FROM " />
-                <marker date="1490267928515" expanded="true" signature="495:526" ph="SELECT * FRO... players" />
-                <marker date="1490267928515" expanded="true" signature="565:589" ph="UPDATE black... " />
-                <marker date="1490267928515" expanded="true" signature="1495:1620" ph="INSERT INTO players... " />
-                <marker date="1490267928515" expanded="true" signature="1861:1916" ph="SELECT name players" />
-                <marker date="1490267928515" expanded="true" signature="2352:2429" ph="SELECT name players" />
-                <marker date="1490267928515" expanded="true" signature="2912:2957" ph="SELECT * FRO... players" />
-                <marker date="1490267928515" expanded="true" signature="3279:3300" ph="SELECT * FRO... players" />
-                <marker date="1490267928515" expanded="true" signature="3899:4013" ph="INSERT INTO players... " />
-                <marker date="1490267928515" expanded="true" signature="4382:4419" ph="DELETE FROM " />
-                <marker date="1490267928515" expanded="true" signature="4898:4953" ph="SELECT * FRO... players" />
-                <marker date="1490267928515" expanded="true" signature="5542:5735" ph="UPDATE black... " />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfigurationManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/ConfigurationManager.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="255">
+              <caret line="38" column="21" lean-forward="false" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dbblackjack.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/dbblackjack.properties">
+      <file leaf-file-name="log4j.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="4">
+              <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyFileSaxParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileSaxParser.java">
+      <file leaf-file-name="MyFileReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="31" column="99" lean-forward="false" selection-start-line="31" selection-start-column="99" selection-end-line="31" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -239,9 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/test.jsp" />
-        <option value="$PROJECT_DIR$/src/ua/blackjack/controller/Connector.java" />
-        <option value="$PROJECT_DIR$/src/ua/blackjack/model/PlayerDAOImpl.java" />
         <option value="$PROJECT_DIR$/resourses/blackjack" />
         <option value="$PROJECT_DIR$/src/ua/blackjack/controller/JdbcConnector.java" />
         <option value="$PROJECT_DIR$/src/ua/blackjack/model/PlayerDAO.java" />
@@ -264,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/Servlets/GameServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/Servlets/MainServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/model/Hand.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/test.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/settings.jsp" />
@@ -280,16 +183,20 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/model/MySettings.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileWorker.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/MyFileWriter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileWriter.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/game.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/playerSettings.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileSaxParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/PlayerDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/controller/ConfigurationManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/PlayerDAOImpl.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/ConfigurationManager.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileSaxParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileReader.java" />
       </list>
     </option>
   </component>
@@ -621,7 +528,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="fileWorkers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -650,7 +557,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3362963" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/mavenProjects/hello-world" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -1287,12 +1194,12 @@
       <workItem from="1489678218448" duration="33194000" />
       <workItem from="1489856798665" duration="34054000" />
       <workItem from="1490108593246" duration="17807000" />
-      <workItem from="1490260973259" duration="5853000" />
+      <workItem from="1490260973259" duration="16394000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="360280000" />
+    <option name="totallyTimeSpent" value="370821000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1304,8 +1211,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="741" extended-state="1" />
-    <editor active="false" />
+    <frame x="0" y="0" width="1366" height="741" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1327,8 +1234,8 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.4969697" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.4969697" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15371622" sideWeight="0.63318115" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3868243" sideWeight="0.4939394" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33614865" sideWeight="0.63318115" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.037162162" sideWeight="0.4939394" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26969698" sideWeight="0.80701756" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2090909" sideWeight="0.15461347" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1386,8 +1293,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/resources/blackjack" />
-    <entry file="jar:///opt/java/jdk1.8.0_111/src.zip!/java/io/DefaultFileSystem.java" />
     <entry file="jar:///opt/java/jdk1.8.0_111/src.zip!/java/io/FileSystem.java" />
     <entry file="jar:///opt/java/jdk1.8.0_111/src.zip!/java/io/File.java" />
     <entry file="jar:///opt/java/jdk1.8.0_111/src.zip!/java/io/FileInputStream.java" />
@@ -1458,14 +1363,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="43" column="46" lean-forward="true" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/registration.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1594,59 +1491,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/model/MySettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="e#336#337#0" expanded="false" />
-            <element signature="e#368#369#0" expanded="false" />
-            <element signature="e#407#408#0" expanded="false" />
-            <element signature="e#441#442#0" expanded="false" />
-            <element signature="e#482#483#0" expanded="false" />
-            <element signature="e#518#519#0" expanded="false" />
-            <element signature="e#559#560#0" expanded="false" />
-            <element signature="e#595#596#0" expanded="false" />
-            <element signature="e#634#635#0" expanded="false" />
-            <element signature="e#668#669#0" expanded="false" />
-            <element signature="e#699#700#0" expanded="false" />
-            <element signature="e#726#727#0" expanded="false" />
-            <element signature="e#755#756#0" expanded="false" />
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#813#814#0" expanded="false" />
-            <element signature="e#842#843#0" expanded="false" />
-            <element signature="e#872#873#0" expanded="false" />
-            <element signature="e#901#902#0" expanded="false" />
-            <element signature="e#930#931#0" expanded="false" />
-            <element signature="e#958#959#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="14" column="77" lean-forward="false" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="17" column="75" lean-forward="false" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileSaxParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/dbblackjack.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1663,42 +1507,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/playerSettings.xml">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="75" lean-forward="false" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-288">
-          <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/ConfigurationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/JdbcConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="144">
+          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1722,6 +1534,96 @@
             <marker date="1490267928515" expanded="true" signature="4898:4953" ph="SELECT * FRO... players" />
             <marker date="1490267928515" expanded="true" signature="5542:5735" ph="UPDATE black... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/ConfigurationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="63" lean-forward="true" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/jdbc/JdbcConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/playerSettings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="54" column="75" lean-forward="false" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/model/MySettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileSaxParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="94" column="52" lean-forward="false" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="38" column="21" lean-forward="false" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/servlets/MainServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-66">
+          <caret line="23" column="61" lean-forward="false" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/blackjack/fileWorkers/MyFileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="31" column="99" lean-forward="false" selection-start-line="31" selection-start-column="99" selection-end-line="31" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>

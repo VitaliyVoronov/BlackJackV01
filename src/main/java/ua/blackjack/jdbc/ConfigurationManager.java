@@ -11,6 +11,7 @@ import java.util.PropertyResourceBundle;
 public class ConfigurationManager {
 
     private static ConfigurationManager instance;
+    //TODO It's not good, change absolute path to relative path
     private static final String FILENAME = "/media/vitaliy/storage/IdeaProjects/BlackJackV01/resources/blackjack";
     private FileInputStream fis;
     private PropertyResourceBundle resource;

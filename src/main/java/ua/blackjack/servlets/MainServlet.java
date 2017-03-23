@@ -1,6 +1,8 @@
 package ua.blackjack.servlets;
 
+import org.apache.log4j.Logger;
 import ua.blackjack.controller.Controller;
+import ua.blackjack.fileWorkers.MyFileWriter;
 import ua.blackjack.model.Card;
 import ua.blackjack.model.Player;
 
@@ -19,6 +21,7 @@ import java.util.List;
  */
 public class MainServlet extends HttpServlet {
     Controller con = new Controller();
+    final static Logger logger = Logger.getLogger(MainServlet.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        PrintWriter out = response.getWriter();
@@ -30,12 +33,20 @@ public class MainServlet extends HttpServlet {
 
         //TODO Take user from DB by name and password
         } else if (request.getRequestURI().equals("/enter")){
-
+            logger.trace("Try to enter: "+request.getParameter("name"));
             if (con.checkNameAndPassword(request.getParameter("name"), request.getParameter("password"))) {
                 con.getPlayerFromDB(request.getParameter("name"));
                 con.setEnter(true);
                 //TODO I do not like how it looks like
                 con.getSettingsFromXml(con.getPlayer().getName());
+                logger.trace("Entered: "+request.getParameter("name"));
+                logger.info("Test log info");
+                logger.debug("Test log debug");
+                logger.error("Test log error");
+                logger.fatal("Test log fatal");
+
+
+
 
                 request.getSession().setAttribute("controller", con);
                 String message = "User " + con.getPlayer().getName()+"; Email: "+con.getPlayer().getEmail();

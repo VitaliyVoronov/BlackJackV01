@@ -1,5 +1,6 @@
 package ua.blackjack.fileWorkers;
 
+import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public class MyFileSaxParser extends DefaultHandler {
 
+    final static Logger logger = Logger.getLogger(MyFileSaxParser.class);
 
     boolean bName = false;
     boolean bDecks = false;
@@ -26,7 +28,7 @@ public class MyFileSaxParser extends DefaultHandler {
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();
-        System.out.println("Start parse XML...");
+        logger.trace("Start parse XML...");
     }
 
     @Override
@@ -86,10 +88,11 @@ public class MyFileSaxParser extends DefaultHandler {
 
     @Override
     public void endDocument() {
-        System.out.println("Stop parse XML...");
+        logger.trace("Stop parse XML...");
     }
 
     public List getListSettingsFromXML() {
+        logger.trace("Return settings list from XML!");
         return settingsList;
     }
 }
