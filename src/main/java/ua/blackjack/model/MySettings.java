@@ -3,13 +3,16 @@ package ua.blackjack.model;
 /**
  * Created by Администратор on 09.11.2016.
  */
-public class MySettings {
+public class MySettings implements Cloneable{
 
     private String name;
-    private int decks;
-    private int minBet;
-    private int maxBet;
-    private int money;
+    private int decks = 1;
+    private int minBet = 1;
+    private int maxBet = 20;
+    private int money = 100;
+
+    public MySettings() {
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -59,4 +62,9 @@ public class MySettings {
     public String getInfoSettings(){
         return "Name: "+name+"\nDecks: "+decks+"\nMin bet: "+minBet+"\nMax bet: "+maxBet+"\nMax bet: "+maxBet+"\nMoney: "+money;
     }
+
+    public MySettings clone() throws CloneNotSupportedException {
+        return (MySettings) super.clone();
+    }
+
 }

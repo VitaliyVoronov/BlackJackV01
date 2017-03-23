@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +34,9 @@ public class MainServlet extends HttpServlet {
             if (con.checkNameAndPassword(request.getParameter("name"), request.getParameter("password"))) {
                 con.getPlayerFromDB(request.getParameter("name"));
                 con.setEnter(true);
+                //TODO I do not like how it looks like
+                con.getSettingsFromXml(con.getPlayer().getName());
+
                 request.getSession().setAttribute("controller", con);
                 String message = "User " + con.getPlayer().getName()+"; Email: "+con.getPlayer().getEmail();
                 request.getSession().setAttribute("message", message);
@@ -58,6 +60,10 @@ public class MainServlet extends HttpServlet {
                         request.getParameter("passwordReg"),
                         request.getParameter("emailReg"));
                 request.setAttribute("message", "Registration completed successfully!");
+                //TODO This have to do auto
+                con.setDefaultSettings();
+                con.saveNewSettingsToXML(con.getPlayer().getSettings());
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
                 dispatcher.forward(request, response);
             } else {
@@ -75,7 +81,10 @@ public class MainServlet extends HttpServlet {
             int minBet = Integer.parseInt(request.getParameter("minBet"));
             int maxBet = Integer.parseInt(request.getParameter("maxBet"));
             int money = Integer.parseInt(request.getParameter("moneySet"));
+            //TODO This have to do auto
             con.getPlayer().setSettingsParameters(decks,minBet,maxBet,money);
+            con.saveNewSettingsToXML(con.getPlayer().getSettings());
+
             request.setAttribute("message", "Settings completed successfully!");
             RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
             dispatcher.forward(request, response);
@@ -86,6 +95,7 @@ public class MainServlet extends HttpServlet {
             Player player = con.getPlayer();
             Player dealer = con.getDealer();
             String query = ""+request.getQueryString();
+            con.getSettingsFromXml(player.getName());
 
             if (query.equals("action=DEAL") && con.isContinuePushed()){
                 con.firstDealToAll();
@@ -152,6 +162,7 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("moneyPlayer", player.getMoney());
             }
             request.setAttribute("message",con.getMassage());
+            request.getSession().setAttribute("money", player.getMoney());
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
             dispatcher.forward(request, response);

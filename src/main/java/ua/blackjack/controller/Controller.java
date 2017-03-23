@@ -1,15 +1,13 @@
 package ua.blackjack.controller;
 
-import org.xml.sax.SAXException;
+import ua.blackjack.fileWorkers.MyFileReader;
+import ua.blackjack.fileWorkers.MyFileWriter;
+import ua.blackjack.jdbc.PlayerDAOImpl;
 import ua.blackjack.model.Card;
 import ua.blackjack.model.CardDeck;
+import ua.blackjack.model.MySettings;
 import ua.blackjack.model.Player;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -38,7 +36,7 @@ public class Controller {
     private boolean isGame;
     private boolean status;
     private boolean isEnter;
-    private String fileName;
+    private String filePath;
 
     public Controller() {
         decks = 1;
@@ -54,43 +52,44 @@ public class Controller {
         creatDecks(decks);
         mixShoes();
         dealer = new Player("Dealer");
-        fileName = "playerSettings.xml";
+        filePath = getClass().getResource("/playerSettings.xml").getPath();
     }
 
-    public void writeSettingsToXml(){
-        MyFileWriter fr = new MyFileWriter();
-        fr.writeToFile(player.getSettings().getStringSettingsForXml(),fileName);
-
-    }
-
-    public void takeDefaultSettings(){
+    public void setDefaultSettings(){
         player.getSettings().setDecks(decks);
         player.getSettings().setMaxBet(maxBet);
         player.getSettings().setMinBet(minBet);
-        player.getSettings().setMoney(money);;
+        player.getSettings().setMoney(money);
         player.setMoney(money);
-        writeSettingsToXml();
 
     }
 
-    public void takeSettingsFromXml(String name) throws IOException, SAXException, ParserConfigurationException {
-        MyFileSaxParser fsp = new MyFileSaxParser(name);
-        SAXParserFactory sp = SAXParserFactory.newInstance();
-        SAXParser parser = sp.newSAXParser();
-        parser.parse(new File(fileName), fsp);
-        player.setSettings(fsp.getSettings());
+    public void getSettingsFromXml(String playerName) {
+        MyFileReader myFileReader = new MyFileReader();
+        MySettings mySettings = myFileReader.getSettingsByNameFromXML(playerName,filePath);
+        if (mySettings != null){
+            player.setSettings(mySettings);
+        } else {
+            System.out.println("No players settings");
+        }
+
+    }
+
+    public void saveNewSettingsToXML(MySettings newSettings){
+        MyFileWriter myFileWriter = new MyFileWriter();
+        myFileWriter.writeSettingsToFile(newSettings, filePath);
     }
 
     public void newGame(){
-        try {
-            takeSettingsFromXml(player.getName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            getSettingsFromXml(player.getName());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (SAXException e) {
+//            e.printStackTrace();
+//        } catch (ParserConfigurationException e) {
+//            e.printStackTrace();
+//        }
         creatDecks(decks);
         mixShoes();
         player.clearHand();

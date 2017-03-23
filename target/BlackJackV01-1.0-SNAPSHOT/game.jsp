@@ -1,7 +1,3 @@
-<%@ page import="ua.blackjack.controller.Controller" %>
-<%@ page import="ua.blackjack.model.Card" %>
-<%@ page import="ua.blackjack.model.Player" %>
-<%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -13,6 +9,7 @@
 <body>
     <div id="border">
         <div id="header">
+            Your money: ${money}
             <%--<%--%>
                 <%--PrintWriter myOut = response.getWriter();--%>
                 <%--Controller con = (Controller) request.getSession().getAttribute("controller");--%>

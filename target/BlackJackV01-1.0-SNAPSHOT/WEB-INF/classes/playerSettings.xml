@@ -1,0 +1,23 @@
+<players>
+    <player>
+        <name>vitaliy</name>
+        <decks>3</decks>
+        <minBet>5</minBet>
+        <maxBet>10</maxBet>
+        <money>100</money>
+    </player>
+    <player>
+        <name>Petya</name>
+        <decks>2</decks>
+        <minBet>1</minBet>
+        <maxBet>15</maxBet>
+        <money>150</money>
+    </player>
+    <player>
+        <name>john</name>
+        <decks>3</decks>
+        <minBet>5</minBet>
+        <maxBet>10</maxBet>
+        <money>100</money>
+    </player>
+</players>

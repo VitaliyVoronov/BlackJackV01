@@ -1,4 +1,0 @@
-url=jdbc:mysql://localhost/blackjack?autoReconnect=true&useSSL=false&useUnicode=true
-driver=com.mysql.jdbc.Driver
-user=root
-password=12345
