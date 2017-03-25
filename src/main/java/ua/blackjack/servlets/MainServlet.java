@@ -1,8 +1,9 @@
 package ua.blackjack.servlets;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.blackjack.controller.Controller;
-import ua.blackjack.fileWorkers.MyFileWriter;
 import ua.blackjack.model.Card;
 import ua.blackjack.model.Player;
 
@@ -20,13 +21,13 @@ import java.util.List;
  * @version 1.0
  */
 public class MainServlet extends HttpServlet {
-    Controller con = new Controller();
+
     final static Logger logger = Logger.getLogger(MainServlet.class);
 
+    Controller con = new Controller();
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        PrintWriter out = response.getWriter();
-        //out.println("<h1>" + "HI!" + "</h1>");
-        //out.println("<h1>" + request.getRequestURI() + "</h1>");
+
         if(request.getRequestURI().equals("/main")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);

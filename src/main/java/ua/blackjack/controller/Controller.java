@@ -1,5 +1,8 @@
 package ua.blackjack.controller;
 
+import org.apache.log4j.Logger;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.blackjack.fileWorkers.MyFileReader;
 import ua.blackjack.fileWorkers.MyFileWriter;
 import ua.blackjack.jdbc.PlayerDAOImpl;
@@ -19,6 +22,10 @@ import java.util.ArrayList;
  */
 
 public class Controller {
+
+    final static Logger logger = Logger.getLogger(Controller.class);
+
+    ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
     private int decks;
     private int maxBet;
@@ -44,14 +51,14 @@ public class Controller {
         minBet = 1;
         decks = 1;
         money = 50;
-        connect = new PlayerDAOImpl();
+        connect = (PlayerDAOImpl) ctx.getBean("playerDAO");
         continuePushed = true;
         isGame = false;
         massage = "";
         shoes = new ArrayList<Card>();
         creatDecks(decks);
         mixShoes();
-        dealer = new Player("Dealer");
+        dealer = (Player) ctx.getBean("dealer");
         filePath = getClass().getResource("/playerSettings.xml").getPath();
     }
 
@@ -70,7 +77,7 @@ public class Controller {
         if (mySettings != null){
             player.setSettings(mySettings);
         } else {
-            System.out.println("No players settings");
+            logger.debug("No player's settings for "+ playerName);
         }
 
     }

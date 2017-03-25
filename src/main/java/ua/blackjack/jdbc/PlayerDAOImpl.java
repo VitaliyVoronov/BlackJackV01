@@ -18,9 +18,6 @@ public class PlayerDAOImpl implements PlayerDAO {
     private final String SELECT = "SELECT * FROM blackjack.players ";
     private final String UPDATE = "UPDATE blackjack.players ";
 
-    /*Connection con ;
-    Statement st ;*/
-
     public PlayerDAOImpl() {
 
         connector = new JdbcConnector();
@@ -121,10 +118,10 @@ public class PlayerDAOImpl implements PlayerDAO {
     }
 
     public void closeConnection() {
-
         try {
             st.close();
             con.close();
+            connector.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
