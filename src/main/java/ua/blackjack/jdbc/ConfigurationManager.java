@@ -1,8 +1,6 @@
 package ua.blackjack.jdbc;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.PropertyResourceBundle;
 
 /**
@@ -13,8 +11,7 @@ import java.util.PropertyResourceBundle;
 public class ConfigurationManager {
 
     private static ConfigurationManager instance;
-    //TODO It's not good, change absolute path to relative path
-    private static final String FILENAME = "/media/vitaliy/storage/IdeaProjects/BlackJackV01/resources/blackjack";
+    private final String FILENAME = getClass().getResource("/db.properties").getPath();
     private FileInputStream fis;
     private PropertyResourceBundle resource;
     private String url;
