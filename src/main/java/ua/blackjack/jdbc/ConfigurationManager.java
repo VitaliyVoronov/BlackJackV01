@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.PropertyResourceBundle;
 
 /**
- * Created by vitaliy on 12/6/16.
+ * @author vitaliy
+ * @project BlackJackV01
+ * @since 3/25/17
  */
 public class ConfigurationManager {
 

@@ -1,9 +1,7 @@
 package ua.blackjack.servlets;
 
 import org.apache.log4j.Logger;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ua.blackjack.controller.Controller;
+import ua.blackjack.engine.Engine;
 import ua.blackjack.model.Card;
 import ua.blackjack.model.Player;
 
@@ -18,13 +16,15 @@ import java.util.List;
 
 /**
  * @author vitaliy
- * @version 1.0
+ * @project BlackJackV01
+ * @since 3/25/17
  */
+
 public class MainServlet extends HttpServlet {
 
     final static Logger logger = Logger.getLogger(MainServlet.class);
 
-    Controller con = new Controller();
+    Engine engine = new Engine();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -35,11 +35,11 @@ public class MainServlet extends HttpServlet {
         //TODO Take user from DB by name and password
         } else if (request.getRequestURI().equals("/enter")){
             logger.trace("Try to enter: "+request.getParameter("name"));
-            if (con.checkNameAndPassword(request.getParameter("name"), request.getParameter("password"))) {
-                con.getPlayerFromDB(request.getParameter("name"));
-                con.setEnter(true);
+            if (engine.checkNameAndPassword(request.getParameter("name"), request.getParameter("password"))) {
+                engine.getPlayerFromDB(request.getParameter("name"));
+                engine.setEnter(true);
                 //TODO I do not like how it looks like
-                con.getSettingsFromXml(con.getPlayer().getName());
+                engine.getSettingsFromXml(engine.getPlayer().getName());
                 logger.trace("Entered: "+request.getParameter("name"));
                 logger.info("Test log info");
                 logger.debug("Test log debug");
@@ -49,8 +49,8 @@ public class MainServlet extends HttpServlet {
 
 
 
-                request.getSession().setAttribute("controller", con);
-                String message = "User " + con.getPlayer().getName()+"; Email: "+con.getPlayer().getEmail();
+                request.getSession().setAttribute("engine", engine);
+                String message = "User " + engine.getPlayer().getName()+"; Email: "+ engine.getPlayer().getEmail();
                 request.getSession().setAttribute("message", message);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
                 dispatcher.forward(request, response);
@@ -67,14 +67,14 @@ public class MainServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         } else if (request.getRequestURI().equals("/signup")) {
-            if (con.isAvailableName(request.getParameter("nameReg"))) {
-                con.addPlayerToDB(request.getParameter("nameReg"),
+            if (engine.isAvailableName(request.getParameter("nameReg"))) {
+                engine.addPlayerToDB(request.getParameter("nameReg"),
                         request.getParameter("passwordReg"),
                         request.getParameter("emailReg"));
                 request.setAttribute("message", "Registration completed successfully!");
                 //TODO This have to do auto
-                con.setDefaultSettings();
-                con.saveNewSettingsToXML(con.getPlayer().getSettings());
+                engine.setDefaultSettings();
+                engine.saveNewSettingsToXML(engine.getPlayer().getSettings());
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
                 dispatcher.forward(request, response);
@@ -94,8 +94,8 @@ public class MainServlet extends HttpServlet {
             int maxBet = Integer.parseInt(request.getParameter("maxBet"));
             int money = Integer.parseInt(request.getParameter("moneySet"));
             //TODO This have to do auto
-            con.getPlayer().setSettingsParameters(decks,minBet,maxBet,money);
-            con.saveNewSettingsToXML(con.getPlayer().getSettings());
+            engine.getPlayer().setSettingsParameters(decks,minBet,maxBet,money);
+            engine.saveNewSettingsToXML(engine.getPlayer().getSettings());
 
             request.setAttribute("message", "Settings completed successfully!");
             RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
@@ -104,51 +104,51 @@ public class MainServlet extends HttpServlet {
         //Game jsp
         } else if (request.getRequestURI().equals("/game")) {
 
-            Player player = con.getPlayer();
-            Player dealer = con.getDealer();
+            Player player = engine.getPlayer();
+            Player dealer = engine.getDealer();
             String query = ""+request.getQueryString();
-            con.getSettingsFromXml(player.getName());
+            engine.getSettingsFromXml(player.getName());
 
-            if (query.equals("action=DEAL") && con.isContinuePushed()){
-                con.firstDealToAll();
+            if (query.equals("action=DEAL") && engine.isContinuePushed()){
+                engine.firstDealToAll();
                 if (player.getHand().getCards().size() > 0 && dealer.getHand().getCards().size() > 0){
-                    con.setContinuePushed(false);
-                    con.setGameTrue();
+                    engine.setContinuePushed(false);
+                    engine.setGameTrue();
                 }
             }
 
-            if(query.equals("action=CONTINUE") && !con.isGame()){
-                con.setContinuePushed(true);
-                con.clearTable();
-                con.countWin();
-                con.clearBet();
-                con.clearPoints();
+            if(query.equals("action=CONTINUE") && !engine.isGame()){
+                engine.setContinuePushed(true);
+                engine.clearTable();
+                engine.countWin();
+                engine.clearBet();
+                engine.clearPoints();
             }
 
-            if (query.equals("bet=1") && !con.isDealPushed() && con.isContinuePushed()){
-                con.takeMoneyFromPlayerToBet(1);
+            if (query.equals("bet=1") && !engine.isDealPushed() && engine.isContinuePushed()){
+                engine.takeMoneyFromPlayerToBet(1);
             }
-            if (query.equals("bet=5") && !con.isDealPushed() && con.isContinuePushed()){
-                con.takeMoneyFromPlayerToBet(5);
+            if (query.equals("bet=5") && !engine.isDealPushed() && engine.isContinuePushed()){
+                engine.takeMoneyFromPlayerToBet(5);
 
             }
-            if (query.equals("bet=10") && !con.isDealPushed() && con.isContinuePushed()){
-                con.takeMoneyFromPlayerToBet(10);
+            if (query.equals("bet=10") && !engine.isDealPushed() && engine.isContinuePushed()){
+                engine.takeMoneyFromPlayerToBet(10);
             }
 
-            request.setAttribute("bet", con.getBet());
+            request.setAttribute("bet", engine.getBet());
             List<String> listShirt = new ArrayList<>();
-            for (Card c : con.getShoes()){
+            for (Card c : engine.getShoes()){
                 listShirt.add(c.getShirt());
             }
             request.setAttribute("shirts", listShirt);
 
-            if(query.equals("action=STAND") && con.isGame()){
-                con.dealCardsToDealer();
-                con.setGameFalse();
+            if(query.equals("action=STAND") && engine.isGame()){
+                engine.dealCardsToDealer();
+                engine.setGameFalse();
             }
 
-            if (con.isGame() || !con.isContinuePushed()) {
+            if (engine.isGame() || !engine.isContinuePushed()) {
                 List<String> cardsDealer = new ArrayList<>();
                 for (int i = 0; i < dealer.getHand().getCards().size(); i++) {
                     Card c = dealer.getHand().getCards().get(i);
@@ -160,9 +160,9 @@ public class MainServlet extends HttpServlet {
             }
 
             if (query.equals("action=HIT")) {
-                con.dealOneCardToPlayer();
+                engine.dealOneCardToPlayer();
             }
-            if (con.isGame() || !con.isContinuePushed()) {
+            if (engine.isGame() || !engine.isContinuePushed()) {
                 List<String> cardsPlayer = new ArrayList<>();
                 for (int i = 0; i < player.getHand().getCards().size(); i++) {
                     Card c = player.getHand().getCards().get(i);
@@ -173,7 +173,7 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("sumNumbersPlayer", player.getSumNumbers());
                 request.setAttribute("moneyPlayer", player.getMoney());
             }
-            request.setAttribute("message",con.getMassage());
+            request.setAttribute("message",engine.getMassage());
             request.getSession().setAttribute("money", player.getMoney());
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
@@ -182,22 +182,6 @@ public class MainServlet extends HttpServlet {
         } else if (request.getRequestURI().equals("/login")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
-
-//        } else if (request.getRequestURI().equals("/test")) {
-//
-//            PrintWriter out = response.getWriter();
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>BlackJack</title>");
-//            out.println("</head>");
-//            out.println("<body>");
-//            for (int i = 0; i < con.getShoes().size(); i++) {
-//                Card c = con.getShoes().get(i);
-//                System.out.println(con.getShoes());
-//                out.println("<img src='resources/shirt.png' alt='card' class='shoes' />");
-//            }
-//            out.println("</body>");
-//            out.println("</html>");
 
         }
     }

@@ -9,12 +9,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Администратор on 09.11.2016.
+ * Write settings to xml file
+ * @author vitaliy
+ * @project BlackJackV01
+ * @since 3/25/17
  */
 public class MyFileWriter {
 
     final static Logger logger = Logger.getLogger(MyFileWriter.class);
 
+    //Take new settings and path to file and read all settings to list,
+    // after that add new settings to list and write it all to xml file
     public void writeSettingsToFile(MySettings myNewSettings, String filePath){
         MyFileReader myFileReader = new MyFileReader();
         List<MySettings> mySettingsList = myFileReader.getListSettingsFromXML(filePath);

@@ -1,4 +1,4 @@
-package ua.blackjack.controller;
+package ua.blackjack.engine;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -15,15 +15,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * It's controller for blakjack game
+ * It's engine for blakjack game
  * 
  * @author vitaliy
  * @version 1.0
  */
 
-public class Controller {
+public class Engine {
 
-    final static Logger logger = Logger.getLogger(Controller.class);
+    final static Logger logger = Logger.getLogger(Engine.class);
 
     ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
@@ -45,7 +45,7 @@ public class Controller {
     private boolean isEnter;
     private String filePath;
 
-    public Controller() {
+    public Engine() {
         decks = 1;
         maxBet = 20;
         minBet = 1;

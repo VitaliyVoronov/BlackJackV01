@@ -11,6 +11,6 @@
 
     <bean id="playerDAO" class="ua.blackjack.jdbc.PlayerDAOImpl"/>
 
-    <!--<bean id="controller" class="ua.blackjack.controller.Controller"/>-->
+    <!--<bean id="engine" class="ua.blackjack.engineine"/>-->
 
 </beans>

@@ -22,8 +22,8 @@
               <%--if (query != null) {--%>
 
               <%--if (query.equals("Enter")) {--%>
-                  <%--Controller con = new Controller();--%>
-                  <%--request.getSession().setAttribute("controller", con);--%>
+                  <%--Engine con = new Engine();--%>
+                  <%--request.getSession().setAttribute("engine", con);--%>
 
                   <%--if (con.checkNameAndPassword(request.getParameter("name"), request.getParameter("password"))) {--%>
                       <%--con.getPlayerFromDB(request.getParameter("name"));--%>
@@ -39,7 +39,7 @@
                       <%--String redirectURL = "login.jsp";--%>
                       <%--response.sendRedirect(redirectURL);--%>
                   <%--}--%>
-                  <%--request.getSession().setAttribute("controller", con);--%>
+                  <%--request.getSession().setAttribute("engine", con);--%>
               <%--}--%>
           <%--}--%>
       <%--%>--%>

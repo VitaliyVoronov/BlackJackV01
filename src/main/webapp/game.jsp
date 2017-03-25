@@ -12,7 +12,7 @@
             Your money: ${money}
             <%--<%--%>
                 <%--PrintWriter myOut = response.getWriter();--%>
-                <%--Controller con = (Controller) request.getSession().getAttribute("controller");--%>
+                <%--Engine con = (Engine) request.getSession().getAttribute("engine");--%>
                 <%--String query = ""+request.getQueryString();--%>
 
                 <%--Player player = con.getPlayer();--%>

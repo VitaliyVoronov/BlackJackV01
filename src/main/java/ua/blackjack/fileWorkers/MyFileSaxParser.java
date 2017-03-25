@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Администратор on 09.11.2016.
+ * Sax parser for parsing xml file and fill settings list
+ * @author vitaliy
+ * @project BlackJackV01
+ * @since 3/25/17
  */
 public class MyFileSaxParser extends DefaultHandler {
 
@@ -91,6 +94,7 @@ public class MyFileSaxParser extends DefaultHandler {
         logger.trace("Stop parse XML...");
     }
 
+    //Return list all settings from xml file
     public List getListSettingsFromXML() {
         logger.trace("Return settings list from XML!");
         return settingsList;

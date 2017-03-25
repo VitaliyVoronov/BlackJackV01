@@ -11,11 +11,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Read through saxparser settings from xml file
+ * @author vitaliy
+ * @project BlackJackV01
+ * @since 3/25/17
+ */
 
 public class MyFileReader {
 
     final static Logger logger = Logger.getLogger(MyFileReader.class);
 
+    //Take player name and path to file and return settings by name from this file
     public MySettings getSettingsByNameFromXML(String playerName,String filePath){
         MySettings mySettings = null;
         List<MySettings> mySettingsList = getListSettingsFromXML(filePath);
@@ -36,7 +43,7 @@ public class MyFileReader {
             return null;
         }
     }
-
+    //Take path to xml file and return list with all settings from this file
     public List<MySettings> getListSettingsFromXML(String filePath) {
         List<MySettings> mySettingsList = new ArrayList<>();
         try {
