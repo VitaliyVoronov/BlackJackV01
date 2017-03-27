@@ -1,46 +1,61 @@
 package ua.blackjack.jdbc;
 
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Created by vitaliy on 12/6/16.
+ * Connection to DB
+ * @author vitaliy
+ * @project BlackJackV01
+ * @since 3/25/17
  */
+
 public class JdbcConnector {
 
-    private Connection conn;
+    final static Logger logger = Logger.getLogger(JdbcConnector.class);
 
+    private Connection con;
+
+    //Return connection to mysql db
     public Connection getConnection() {
-        ConfigurationManager cfg =ConfigurationManager.getInstance();
+
+        ConfigurationManager cfg = ConfigurationManager.getInstance();
+
         try {
             Class.forName(cfg.getDriver());
-            conn = DriverManager.getConnection(cfg.getUrl(), cfg.getUser(),
+            logger.trace("Try to get connection.");
+            con = DriverManager.getConnection(cfg.getUrl(), cfg.getUser(),
                     cfg.getPassword());
+            logger.trace("Got connection.");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Can't load database driver.");
-
+            logger.debug("Can't load database driver.", e);
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Can't connect to database.");
+            logger.debug("Can't connect to database.", e);
         }
-        if(conn==null) {
-            System.out.println("Driver type is not correct in URL");
+        if(con ==null) {
+            logger.debug("Driver type is not correct in URL");
         }
 
-        return conn;
+        return con;
     }
-
-    public void closeConnection() {
-        if (conn != null) {
-            try {
-                    conn.close();
-            } catch (SQLException e) {
-            }
-        }
-
-    }
+    //Close connection
+//    public boolean closeConnection() {
+//        if (con != null) {
+//            try {
+//                logger.trace("Try to close connection.");
+//                con.close();
+//                logger.debug("Closed connection.");
+//                return true;
+//            } catch (SQLException e) {
+//                logger.debug("Can not close connection!");
+//                return false;
+//            }
+//        }
+//        return false;
+//    }
 
 }

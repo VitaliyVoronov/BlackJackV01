@@ -6,19 +6,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.blackjack.fileWorkers.MyFileReader;
 import ua.blackjack.fileWorkers.MyFileWriter;
 import ua.blackjack.jdbc.PlayerDAOImpl;
-import ua.blackjack.model.Card;
-import ua.blackjack.model.CardDeck;
-import ua.blackjack.model.MySettings;
-import ua.blackjack.model.Player;
+import ua.blackjack.model.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * It's engine for blakjack game
- * 
+ * This is controller fo all program
+ *
  * @author vitaliy
- * @version 1.0
+ * @project BlackJackV01
+ * @since 3/25/17
  */
 
 public class Engine {
@@ -32,7 +30,7 @@ public class Engine {
     private int minBet;
     private int money;
     private int bet;
-    private PlayerDAOImpl connect;
+//    private PlayerDAOImpl playerDAO;
     private ArrayList<Card> shoes = null;
     private Player dealer;
     private Player player;
@@ -51,15 +49,35 @@ public class Engine {
         minBet = 1;
         decks = 1;
         money = 50;
-        connect = (PlayerDAOImpl) ctx.getBean("playerDAO");
+//        playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         continuePushed = true;
         isGame = false;
         massage = "";
         shoes = new ArrayList<Card>();
-        creatDecks(decks);
+        createDecksAndAddToShoes(decks);
         mixShoes();
         dealer = (Player) ctx.getBean("dealer");
         filePath = getClass().getResource("/playerSettings.xml").getPath();
+    }
+
+    public boolean signIn(String login, String password){
+        PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
+        player = playerDAO.getPlayerByNameAndPassword(login,password);
+        if (player != null){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isAvailableName(String login) {
+        PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
+        return playerDAO.isAvailableName(login);
+    }
+
+    public void addPlayerToDB(String name, String password, String email) {
+        PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
+        playerDAO.addPlayerToDB(name, password, email);
     }
 
     public void setDefaultSettings(){
@@ -97,27 +115,27 @@ public class Engine {
 //        } catch (ParserConfigurationException e) {
 //            e.printStackTrace();
 //        }
-        creatDecks(decks);
+        createDecksAndAddToShoes(decks);
         mixShoes();
         player.clearHand();
         dealer.clearHand();
 
     }
 
-    public void getPlayerFromDB(String name) {
-        try {
-            player = connect.getPlayerFromDB(name);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        connect.closeConnection();
-    }
+//    public void getPlayerFromDB(String login) {
+//        try {
+//            player = playerDAO.getPlayerFromDB(login);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        playerDAO.closeConnection();
+//    }
 
     public void oneStep() {
         checkSumPlayerAndDealer();
     }
 
-    public void creatDecks(int num) {
+    public void createDecksAndAddToShoes(int num) {
         for (int i = 0; i < num; i++) {
             ArrayList<Card> list = new CardDeck().getCardDeck();
             for (int j = 0; j < list.size(); j++) {
@@ -238,10 +256,6 @@ public class Engine {
         return massage;
     }
 
-    public void setMassage(String massage) {
-        this.massage = massage;
-    }
-
     public void setBet(int bet) {
         this.bet += bet;
     }
@@ -262,21 +276,11 @@ public class Engine {
         return isGame;
     }
 
-    public boolean isStandPushed() {
-        return standPushed;
-    }
-
-    public void setStandPushed(boolean standPushed) {
-        this.standPushed = standPushed;
-    }
 
     public boolean isDealPushed() {
         return dealPushed;
     }
 
-    public void setDealPushed(boolean dealPushed) {
-        this.dealPushed = dealPushed;
-    }
 
     public boolean isContinuePushed() {
         return continuePushed;
@@ -304,26 +308,14 @@ public class Engine {
         bet = 0;
     }
 
-    public boolean checkPassword(String password) {
-        boolean rez = player.getPassword().equals(password) ? true : false;
-        return rez;
-    }
+//    public boolean checkPassword(String password) {
+//        boolean rez = player.getPassword().equals(password) ? true : false;
+//        return rez;
+//    }
 
-    public boolean isAvailableName(String name) {
-        return connect.isAvailableName(name);
-    }
-
-    public void addPlayerToDB(String name, String password, String email) {
-        connect.addPlayerToDB(name, password, email);
-    }
-
-    public boolean checkNameAndPassword(String name, String password) {
-        return connect.checkNameAndPassword(name, password);
-    }
-
-    public boolean isEnter() {
-        return isEnter;
-    }
+//    public boolean checkNameAndPassword(String name, String password) {
+//        return playerDAO.checkNameAndPassword(name, password);
+//    }
 
     public void setEnter(boolean enter) {
         isEnter = enter;
@@ -333,7 +325,5 @@ public class Engine {
         player.clearSumNumbers();
         dealer.clearSumNumbers();
     }
-
-
 
 }

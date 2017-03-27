@@ -36,19 +36,13 @@ public class MainServlet extends HttpServlet {
         //TODO Take user from DB by name and password
         } else if (request.getRequestURI().equals("/enter")){
             logger.trace("Try to enter: "+request.getParameter("name"));
-            if (engine.checkNameAndPassword(request.getParameter("name"), request.getParameter("password"))) {
-                engine.getPlayerFromDB(request.getParameter("name"));
+            if (engine.signIn(request.getParameter("name"),request.getParameter("password"))){
+//            if (engine.checkNameAndPassword(request.getParameter("name"), request.getParameter("password"))) {
+//                engine.getPlayerFromDB(request.getParameter("name"));
                 engine.setEnter(true);
                 //TODO I do not like how it looks like
                 engine.getSettingsFromXml(engine.getPlayer().getName());
                 logger.trace("Entered: "+request.getParameter("name"));
-                logger.info("Test log info");
-                logger.debug("Test log debug");
-                logger.error("Test log error");
-                logger.fatal("Test log fatal");
-
-
-
 
                 request.getSession().setAttribute("engine", engine);
                 String message = "User " + engine.getPlayer().getName()+"; Email: "+ engine.getPlayer().getEmail();

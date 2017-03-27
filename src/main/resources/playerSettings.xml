@@ -20,4 +20,18 @@
         <maxBet>10</maxBet>
         <money>100</money>
     </player>
+    <player>
+        <name>default</name>
+        <decks>2</decks>
+        <minBet>5</minBet>
+        <maxBet>10</maxBet>
+        <money>100</money>
+    </player>
+    <player>
+        <name>test</name>
+        <decks>1</decks>
+        <minBet>1</minBet>
+        <maxBet>2</maxBet>
+        <money>10</money>
+    </player>
 </players>

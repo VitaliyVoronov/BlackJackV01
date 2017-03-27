@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="blackjack" />
         <module name="BlackJackV01" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="blackjack" target="1.8" />
       <module name="BlackJackV01" target="1.8" />
     </bytecodeTargetLevel>
   </component>

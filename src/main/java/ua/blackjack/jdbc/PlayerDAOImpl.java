@@ -104,24 +104,22 @@ public class PlayerDAOImpl implements PlayerDAO {
         return player;
     }
 
-    public void getAllFromDB(){
-        try {
-            ResultSet rs = st.executeQuery("SELECT * FROM players");
-            while (rs.next()){
-                System.out.println("id: "+rs.getInt(1)+"name: "+rs.getString(2)+"password: "+ rs.getString(3));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
+//    public void getAllFromDB(){
+//        try {
+//            ResultSet rs = st.executeQuery("SELECT * FROM players");
+//            while (rs.next()){
+//                System.out.println("id: "+rs.getInt(1)+"name: "+rs.getString(2)+"password: "+ rs.getString(3));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void closeConnection() {
         try {
             st.close();
             con.close();
-            connector.closeConnection();
+//            connector.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -162,7 +160,7 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
     }
 
-    //return player from db or null if no player with this name and password
+    //return player from db or null if no player with this name or password
     @Override
     public Player getPlayerByNameAndPassword(String name, String password) {
         Player player = null;

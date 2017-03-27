@@ -1,0 +1,29 @@
+Проверено на tomcat 8.5 и 9
+Исролзуеться MySQL
+Создать базу данных blackjack с таблицей:
+
+players
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(20) | YES  |     | NULL    |                |
+| password | varchar(15) | YES  |     | NULL    |                |
+| email    | varchar(20) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+Вот команда, по идее должна работать:)
+
+CREATE TABLE `players` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  `password` varchar(15) DEFAULT NULL,
+  `email` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+Необходимо внести пользователя и пароль в файле WEB_INF/classes/db.properties в ROOT.war
+
+Поместить war в папку webapps в tomcat предварительно удалить папку ROOT
+Запустить tomcat и пройти по ссылке http://localhost:8080/main
+Пройти регистрацию и начать новую игру
+Сама игра еще работает не очень коректно.

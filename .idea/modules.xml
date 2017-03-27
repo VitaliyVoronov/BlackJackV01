@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BlackJackV01.iml" filepath="$PROJECT_DIR$/BlackJackV01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blackjack.iml" filepath="$PROJECT_DIR$/blackjack.iml" />
     </modules>
   </component>
 </project>
