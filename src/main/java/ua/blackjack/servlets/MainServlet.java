@@ -76,8 +76,18 @@ public class MainServlet extends HttpServlet {
             }
 
         } else if (request.getRequestURI().equals("/settings")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
-            dispatcher.forward(request, response);
+            String message = "";
+            if (engine.isEnter()) {
+                message = "Fill in all the fields.";
+                request.setAttribute("message", message);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                message = "No sign in!";
+                request.setAttribute("message", message);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+                dispatcher.forward(request, response);
+            }
 
         } else if (request.getRequestURI().equals("/saveSettings")) {
             String message = "";
@@ -86,8 +96,6 @@ public class MainServlet extends HttpServlet {
             int maxBet = Integer.parseInt(request.getParameter("maxBet"));
             int money = Integer.parseInt(request.getParameter("moneySet"));
             //TODO This have to do auto
-//            engine.getPlayer().setSettingsParameters(decks,minBet,maxBet,money);
-//            engine.saveNewSettingsToXML(engine.getPlayer().getSettings());
             if (decks != 0 && minBet != 0 && maxBet != 0 && money != 0){
                 logger.debug("Try to change settings!");
                 engine.changeSettings(decks,minBet,maxBet,money);
@@ -105,80 +113,88 @@ public class MainServlet extends HttpServlet {
         //Game jsp
         } else if (request.getRequestURI().equals("/game")) {
 
-            Player player = engine.getPlayer();
-            Player dealer = engine.getDealer();
-            String query = ""+request.getQueryString();
-            engine.getSettingsFromXml(player.getName());
+            if (engine.isEnter()) {
 
-            if (query.equals("action=DEAL") && engine.isContinuePushed()){
-                engine.firstDealToAll();
-                if (player.getHand().getCards().size() > 0 && dealer.getHand().getCards().size() > 0){
-                    engine.setContinuePushed(false);
-                    engine.setGameTrue();
+                Player player = engine.getPlayer();
+                Player dealer = engine.getDealer();
+                String query = "" + request.getQueryString();
+                engine.getSettingsFromXml(player.getName());
+
+                if (query.equals("action=DEAL") && engine.isContinuePushed()) {
+                    engine.firstDealToAll();
+                    if (player.getHand().getCards().size() > 0 && dealer.getHand().getCards().size() > 0) {
+                        engine.setContinuePushed(false);
+                        engine.setGameTrue();
+                    }
                 }
-            }
 
-            if(query.equals("action=CONTINUE") && !engine.isGame()){
-                engine.setContinuePushed(true);
-                engine.clearTable();
-                engine.countWin();
-                engine.clearBet();
-                engine.clearPoints();
-            }
-
-            if (query.equals("bet=1") && !engine.isDealPushed() && engine.isContinuePushed()){
-                engine.takeMoneyFromPlayerToBet(1);
-            }
-            if (query.equals("bet=5") && !engine.isDealPushed() && engine.isContinuePushed()){
-                engine.takeMoneyFromPlayerToBet(5);
-
-            }
-            if (query.equals("bet=10") && !engine.isDealPushed() && engine.isContinuePushed()){
-                engine.takeMoneyFromPlayerToBet(10);
-            }
-
-            request.setAttribute("bet", engine.getBet());
-            List<String> listShirt = new ArrayList<>();
-            for (Card c : engine.getShoes()){
-                listShirt.add(c.getShirt());
-            }
-            request.setAttribute("shirts", listShirt);
-
-            if(query.equals("action=STAND") && engine.isGame()){
-                engine.dealCardsToDealer();
-                engine.setGameFalse();
-            }
-
-            if (engine.isGame() || !engine.isContinuePushed()) {
-                List<String> cardsDealer = new ArrayList<>();
-                for (int i = 0; i < dealer.getHand().getCards().size(); i++) {
-                    Card c = dealer.getHand().getCards().get(i);
-                    cardsDealer.add(c.getFace());
+                if (query.equals("action=CONTINUE") && !engine.isGame()) {
+                    engine.setContinuePushed(true);
+                    engine.clearTable();
+                    engine.countWin();
+                    engine.clearBet();
+                    engine.clearPoints();
                 }
-                request.setAttribute("nameDealer", dealer.getName());
-                request.setAttribute("cardsDealer",cardsDealer);
-                request.setAttribute("sumNumbersDealer",dealer.getSumNumbers());
-            }
 
-            if (query.equals("action=HIT")) {
-                engine.dealOneCardToPlayer();
-            }
-            if (engine.isGame() || !engine.isContinuePushed()) {
-                List<String> cardsPlayer = new ArrayList<>();
-                for (int i = 0; i < player.getHand().getCards().size(); i++) {
-                    Card c = player.getHand().getCards().get(i);
-                    cardsPlayer.add(c.getFace());
+                if (query.equals("bet=1") && !engine.isDealPushed() && engine.isContinuePushed()) {
+                    engine.takeMoneyFromPlayerToBet(1);
                 }
-                request.setAttribute("namePlayer", player.getName());
-                request.setAttribute("cardsPlayer", cardsPlayer);
-                request.setAttribute("sumNumbersPlayer", player.getSumNumbers());
-                request.setAttribute("moneyPlayer", player.getMoney());
-            }
-            request.setAttribute("message",engine.getMassage());
-            request.getSession().setAttribute("money", player.getMoney());
+                if (query.equals("bet=5") && !engine.isDealPushed() && engine.isContinuePushed()) {
+                    engine.takeMoneyFromPlayerToBet(5);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
-            dispatcher.forward(request, response);
+                }
+                if (query.equals("bet=10") && !engine.isDealPushed() && engine.isContinuePushed()) {
+                    engine.takeMoneyFromPlayerToBet(10);
+                }
+
+                request.setAttribute("bet", engine.getBet());
+                List<String> listShirt = new ArrayList<>();
+                for (Card c : engine.getShoes()) {
+                    listShirt.add(c.getShirt());
+                }
+                request.setAttribute("shirts", listShirt);
+
+                if (query.equals("action=STAND") && engine.isGame()) {
+                    engine.dealCardsToDealer();
+                    engine.setGameFalse();
+                }
+
+                if (engine.isGame() || !engine.isContinuePushed()) {
+                    List<String> cardsDealer = new ArrayList<>();
+                    for (int i = 0; i < dealer.getHand().getCards().size(); i++) {
+                        Card c = dealer.getHand().getCards().get(i);
+                        cardsDealer.add(c.getFace());
+                    }
+                    request.setAttribute("nameDealer", dealer.getName());
+                    request.setAttribute("cardsDealer", cardsDealer);
+                    request.setAttribute("sumNumbersDealer", dealer.getSumNumbers());
+                }
+
+                if (query.equals("action=HIT")) {
+                    engine.dealOneCardToPlayer();
+                }
+                if (engine.isGame() || !engine.isContinuePushed()) {
+                    List<String> cardsPlayer = new ArrayList<>();
+                    for (int i = 0; i < player.getHand().getCards().size(); i++) {
+                        Card c = player.getHand().getCards().get(i);
+                        cardsPlayer.add(c.getFace());
+                    }
+                    request.setAttribute("namePlayer", player.getName());
+                    request.setAttribute("cardsPlayer", cardsPlayer);
+                    request.setAttribute("sumNumbersPlayer", player.getSumNumbers());
+                    request.setAttribute("moneyPlayer", player.getMoney());
+                }
+                request.setAttribute("message", engine.getMassage());
+                request.getSession().setAttribute("money", player.getMoney());
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                String message = "No sign in!";
+                request.setAttribute("message", message);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+                dispatcher.forward(request, response);
+            }
 
         } else if (request.getRequestURI().equals("/login")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");

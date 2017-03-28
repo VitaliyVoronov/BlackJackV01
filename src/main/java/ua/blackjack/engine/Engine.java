@@ -122,7 +122,6 @@ public class Engine {
         player.getSettings().setMaxBet(maxBet);
         player.getSettings().setMoney(money);
         saveNewSettingsToXML(player.getSettings());
-
         return false;
     }
 
@@ -133,6 +132,10 @@ public class Engine {
         } else {
             return false;
         }
+    }
+
+    public boolean isEnter(){
+        return isEnter;
     }
 
     public void newGame(){
