@@ -197,7 +197,7 @@ public class EngineTest {
 //    }
 //
 //    @Test
-//    public void isAvailableName() throws Exception {
+//    public void isAvailableLogin() throws Exception {
 //
 //    }
 //

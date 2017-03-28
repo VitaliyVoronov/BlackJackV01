@@ -1,4 +1,6 @@
 package ua.blackjack.jdbc;
+import org.apache.log4j.Logger;
+import ua.blackjack.engine.Engine;
 import ua.blackjack.model.Player;
 import ua.blackjack.model.PlayerDAO;
 
@@ -8,6 +10,8 @@ import java.sql.*;
  * Created by Администратор on 08.11.2016.
  */
 public class PlayerDAOImpl implements PlayerDAO {
+
+    final static Logger logger = Logger.getLogger(PlayerDAOImpl.class);
 
     private JdbcConnector connector;
     private Connection con;
@@ -46,13 +50,15 @@ public class PlayerDAOImpl implements PlayerDAO {
 
     }
 
-    public void addPlayerToDB(String name, String password, String email){
+    public boolean addPlayerToDB(String name, String password, String email){
         try {
             st.execute("INSERT INTO players(name,password,email) VALUES('" + name.trim() + "','"
                     + password + "','" + email + "')");
+            return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Problem with add player to db!",e);
         }
+        return false;
     }
 
     public boolean isAvailableName(String name) {

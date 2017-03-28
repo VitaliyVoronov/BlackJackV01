@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,14 +61,11 @@ public class MainServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         } else if (request.getRequestURI().equals("/signup")) {
-            if (engine.isAvailableName(request.getParameter("nameReg"))) {
-                engine.addPlayerToDB(request.getParameter("nameReg"),
+            if (engine.isAvailableLogin(request.getParameter("nameReg"))) {
+                engine.signUp(request.getParameter("nameReg"),
                         request.getParameter("passwordReg"),
                         request.getParameter("emailReg"));
                 request.setAttribute("message", "Registration completed successfully!");
-                //TODO This have to do auto
-                engine.setDefaultSettings();
-                engine.saveNewSettingsToXML(engine.getPlayer().getSettings());
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
                 dispatcher.forward(request, response);
@@ -84,15 +80,25 @@ public class MainServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         } else if (request.getRequestURI().equals("/saveSettings")) {
+            String message = "";
             int decks = Integer.parseInt(request.getParameter("decks"));
             int minBet = Integer.parseInt(request.getParameter("minBet"));
             int maxBet = Integer.parseInt(request.getParameter("maxBet"));
             int money = Integer.parseInt(request.getParameter("moneySet"));
             //TODO This have to do auto
-            engine.getPlayer().setSettingsParameters(decks,minBet,maxBet,money);
-            engine.saveNewSettingsToXML(engine.getPlayer().getSettings());
+//            engine.getPlayer().setSettingsParameters(decks,minBet,maxBet,money);
+//            engine.saveNewSettingsToXML(engine.getPlayer().getSettings());
+            if (decks != 0 && minBet != 0 && maxBet != 0 && money != 0){
+                logger.debug("Try to change settings!");
+                engine.changeSettings(decks,minBet,maxBet,money);
+                logger.debug("Settings changed!");
+                message = "Settings completed successfully!";
+            } else {
+                message = "Fill in all the fields.";
+            }
 
-            request.setAttribute("message", "Settings completed successfully!");
+
+            request.setAttribute("message", message);
             RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
             dispatcher.forward(request, response);
 

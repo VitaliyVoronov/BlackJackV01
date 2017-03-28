@@ -20,7 +20,7 @@ public class MyFileWriter {
 
     //Take new settings and path to file and read all settings to list,
     // after that add new settings to list and write it all to xml file
-    public void writeSettingsToFile(MySettings myNewSettings, String filePath){
+    public boolean writeSettingsToFile(MySettings myNewSettings, String filePath){
         MyFileReader myFileReader = new MyFileReader();
         List<MySettings> mySettingsList = myFileReader.getListSettingsFromXML(filePath);
 
@@ -51,13 +51,11 @@ public class MyFileWriter {
                 bw.write(mySettings.getStringSettingsForXml()+"\n");
             }
             bw.write(endString);
-
+            return true;
         } catch (IOException e) {
             logger.warn("Problem to write list settings to file: "+filePath,e);
-
+            return false;
         }
-
-
     }
-    }
+}
 

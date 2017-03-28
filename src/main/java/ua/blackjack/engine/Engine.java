@@ -8,7 +8,6 @@ import ua.blackjack.fileWorkers.MyFileWriter;
 import ua.blackjack.jdbc.PlayerDAOImpl;
 import ua.blackjack.model.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -60,6 +59,7 @@ public class Engine {
         filePath = getClass().getResource("/playerSettings.xml").getPath();
     }
 
+    //Use this method for authorization
     public boolean signIn(String login, String password){
         PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         player = playerDAO.getPlayerByNameAndPassword(login,password);
@@ -69,24 +69,38 @@ public class Engine {
             return false;
         }
     }
-
-    public boolean isAvailableName(String login) {
+    //Return false if login is busy and true is free
+    public boolean isAvailableLogin(String login) {
         PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         return playerDAO.isAvailableName(login);
     }
-
-    public void addPlayerToDB(String name, String password, String email) {
+    //Add new player to DB
+    private boolean addPlayerToDB(String name, String password, String email) {
         PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
-        playerDAO.addPlayerToDB(name, password, email);
+        if (playerDAO.addPlayerToDB(name, password, email)){
+            return true;
+        }
+        return false;
     }
+    //Add player to db and add default settings to xml by this player
+    public boolean signUp(String login, String password, String email){
+        if (addPlayerToDB(login,password,email)){
+            player = new Player();
+            player.setName(login);
+            setDefaultSettings();
+            saveNewSettingsToXML(player.getSettings());
+            player = null;
+            return true;
+        }
+        return false;
 
+    }
+    //TODO I need change this
     public void setDefaultSettings(){
         player.getSettings().setDecks(decks);
         player.getSettings().setMaxBet(maxBet);
         player.getSettings().setMinBet(minBet);
         player.getSettings().setMoney(money);
-        player.setMoney(money);
-
     }
 
     public void getSettingsFromXml(String playerName) {
@@ -95,14 +109,30 @@ public class Engine {
         if (mySettings != null){
             player.setSettings(mySettings);
         } else {
+            setDefaultSettings();
+            saveNewSettingsToXML(player.getSettings());
+            mySettings = myFileReader.getSettingsByNameFromXML(playerName,filePath);
             logger.debug("No player's settings for "+ playerName);
         }
-
     }
 
-    public void saveNewSettingsToXML(MySettings newSettings){
+    public boolean changeSettings(int decks, int minBet, int maxBet, int money){
+        player.getSettings().setDecks(decks);
+        player.getSettings().setMinBet(minBet);
+        player.getSettings().setMaxBet(maxBet);
+        player.getSettings().setMoney(money);
+        saveNewSettingsToXML(player.getSettings());
+
+        return false;
+    }
+
+    public boolean saveNewSettingsToXML(MySettings newSettings){
         MyFileWriter myFileWriter = new MyFileWriter();
-        myFileWriter.writeSettingsToFile(newSettings, filePath);
+        if(myFileWriter.writeSettingsToFile(newSettings, filePath)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void newGame(){

@@ -4,8 +4,8 @@ public class Player {
 
 	private int playerID;
 	private String name = null;
-	private int money = 0;
-	private int sumNumbers = 0;
+	private int money;
+	private int sumNumbers;
 	private Hand hand = new Hand();
 	private String email;
 	private String password;
