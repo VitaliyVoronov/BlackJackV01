@@ -30,7 +30,7 @@ public class Engine {
     private int money;
     private int bet;
 //    private PlayerDAOImpl playerDAO;
-    private ArrayList<Card> shoes = null;
+    private ArrayList<Card> shoes;
     private Player dealer;
     private Player player;
     private String massage;
@@ -52,9 +52,7 @@ public class Engine {
         continuePushed = true;
         isGame = false;
         massage = "";
-        shoes = new ArrayList<Card>();
-        createDecksAndAddToShoes(decks);
-        mixShoes();
+        shoes = new ArrayList();
         dealer = (Player) ctx.getBean("dealer");
         filePath = getClass().getResource("/playerSettings.xml").getPath();
     }
@@ -102,7 +100,7 @@ public class Engine {
         player.getSettings().setMinBet(minBet);
         player.getSettings().setMoney(money);
     }
-
+    //Set settings from xml by login to player's settings
     public void getSettingsFromXml(String playerName) {
         MyFileReader myFileReader = new MyFileReader();
         MySettings mySettings = myFileReader.getSettingsByNameFromXML(playerName,filePath);
@@ -111,11 +109,11 @@ public class Engine {
         } else {
             setDefaultSettings();
             saveNewSettingsToXML(player.getSettings());
-            mySettings = myFileReader.getSettingsByNameFromXML(playerName,filePath);
+//            mySettings = myFileReader.getSettingsByNameFromXML(playerName,filePath);
             logger.debug("No player's settings for "+ playerName);
         }
     }
-
+    //When player set new settings its change in player and save in xml file
     public boolean changeSettings(int decks, int minBet, int maxBet, int money){
         player.getSettings().setDecks(decks);
         player.getSettings().setMinBet(minBet);
@@ -124,8 +122,8 @@ public class Engine {
         saveNewSettingsToXML(player.getSettings());
         return false;
     }
-
-    public boolean saveNewSettingsToXML(MySettings newSettings){
+    //Service method for engine. This method save new settings to xml and return true or false.
+    private boolean saveNewSettingsToXML(MySettings newSettings){
         MyFileWriter myFileWriter = new MyFileWriter();
         if(myFileWriter.writeSettingsToFile(newSettings, filePath)){
             return true;
@@ -133,10 +131,40 @@ public class Engine {
             return false;
         }
     }
-
+    //If player sign in isEnter have to return true else false.
     public boolean isEnter(){
         return isEnter;
     }
+    //Method run when player pushed new game button
+    public void startNewGame(){
+        getSettingsFromXml(player.getName());
+        createDecksAndAddToShoes(player.getSettings().getDecks());
+        mixShoes();
+    }
+    //Name method tell all
+    private void createDecksAndAddToShoes(int num) {
+        for (int i = 0; i < num; i++) {
+            ArrayList<Card> list = new CardDeck().getCardDeck();
+            for (int j = 0; j < list.size(); j++) {
+                shoes.add(list.get(j));
+            }
+        }
+    }
+    
+    private void mixShoes() {
+        ArrayList<Card> tempList = new ArrayList<>();
+        for (int i = 0; i < shoes.size(); i++) {
+            int rand = (int) (Math.random() * shoes.size());
+            tempList.add(shoes.get(rand));
+            shoes.remove(rand);
+            i = 0;
+        }
+        tempList.add(shoes.get(0));
+        shoes.remove(0);
+        shoes = tempList;
+    }
+
+
 
     public void newGame(){
 //        try {
@@ -155,27 +183,11 @@ public class Engine {
 
     }
 
-//    public void getPlayerFromDB(String login) {
-//        try {
-//            player = playerDAO.getPlayerFromDB(login);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        playerDAO.closeConnection();
-//    }
 
     public void oneStep() {
         checkSumPlayerAndDealer();
     }
 
-    public void createDecksAndAddToShoes(int num) {
-        for (int i = 0; i < num; i++) {
-            ArrayList<Card> list = new CardDeck().getCardDeck();
-            for (int j = 0; j < list.size(); j++) {
-                shoes.add(list.get(j));
-            }
-        }
-    }
 
     public void takeMoneyFromPlayerToBet(int moneyToBet) {
         if (moneyToBet > player.getMoney()) {
@@ -185,20 +197,6 @@ public class Engine {
         } else {
             setBet(player.takeMoney(moneyToBet));
         }
-    }
-
-    private void mixShoes() {
-        ArrayList<Card> tempList = new ArrayList<>();
-        for (int i = 0; i < shoes.size(); i++) {
-            int rand = (int) (Math.random() * shoes.size());
-            tempList.add(shoes.get(rand));
-            shoes.remove(rand);
-            i = 0;
-        }
-        tempList.add(shoes.get(0));
-        shoes.remove(0);
-        shoes = tempList;
-
     }
 
     public ArrayList<Card> getShoes() {
@@ -340,15 +338,6 @@ public class Engine {
     public void clearBet() {
         bet = 0;
     }
-
-//    public boolean checkPassword(String password) {
-//        boolean rez = player.getPassword().equals(password) ? true : false;
-//        return rez;
-//    }
-
-//    public boolean checkNameAndPassword(String name, String password) {
-//        return playerDAO.checkNameAndPassword(name, password);
-//    }
 
     public void setEnter(boolean enter) {
         isEnter = enter;

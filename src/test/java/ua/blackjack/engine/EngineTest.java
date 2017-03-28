@@ -60,11 +60,11 @@ public class EngineTest {
 //
 //    }
 //
-    @Test
-    public void createDecksAndAddToShoes() throws Exception {
-        engine.createDecksAndAddToShoes(0);
-        assertEquals(52, engine.getShoes().size());
-    }
+//    @Test
+//    public void createDecksAndAddToShoes() throws Exception {
+//        engine.createDecksAndAddToShoes(0);
+//        assertEquals(52, engine.getShoes().size());
+//    }
 //
 //    @Test
 //    public void takeMoneyFromPlayerToBet() throws Exception {

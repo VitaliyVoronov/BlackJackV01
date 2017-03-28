@@ -105,7 +105,6 @@ public class MainServlet extends HttpServlet {
                 message = "Fill in all the fields.";
             }
 
-
             request.setAttribute("message", message);
             RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
             dispatcher.forward(request, response);
@@ -114,11 +113,10 @@ public class MainServlet extends HttpServlet {
         } else if (request.getRequestURI().equals("/game")) {
 
             if (engine.isEnter()) {
-
                 Player player = engine.getPlayer();
                 Player dealer = engine.getDealer();
                 String query = "" + request.getQueryString();
-                engine.getSettingsFromXml(player.getName());
+                engine.startNewGame();
 
                 if (query.equals("action=DEAL") && engine.isContinuePushed()) {
                     engine.firstDealToAll();
@@ -184,6 +182,7 @@ public class MainServlet extends HttpServlet {
                     request.setAttribute("sumNumbersPlayer", player.getSumNumbers());
                     request.setAttribute("moneyPlayer", player.getMoney());
                 }
+                request.setAttribute("playerSettings", player.getSettings().getInfoSettings());
                 request.setAttribute("message", engine.getMassage());
                 request.getSession().setAttribute("money", player.getMoney());
 

@@ -60,7 +60,7 @@ public class MySettings implements Cloneable{
     }
 
     public String getInfoSettings(){
-        return "Name: "+name+"\nDecks: "+decks+"\nMin bet: "+minBet+"\nMax bet: "+maxBet+"\nMax bet: "+maxBet+"\nMoney: "+money;
+        return "Name: "+name+"\nDecks: "+decks+"\nMin bet: "+minBet+"\nMax bet: "+maxBet+"\nMoney: "+money;
     }
 
     public MySettings clone() throws CloneNotSupportedException {
