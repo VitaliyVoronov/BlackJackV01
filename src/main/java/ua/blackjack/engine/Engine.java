@@ -24,10 +24,10 @@ public class Engine {
 
     ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
-    private int decks;
-    private int maxBet;
-    private int minBet;
-    private int money;
+//    private int decks;
+//    private int maxBet;
+//    private int minBet;
+//    private int money;
     private int bet;
 //    private PlayerDAOImpl playerDAO;
     private ArrayList<Card> shoes;
@@ -38,16 +38,15 @@ public class Engine {
     private boolean dealPushed;
     private boolean continuePushed;
     private boolean isGame;
-    private boolean status;
+    private boolean isWin;
     private boolean isEnter;
     private String filePath;
 
     public Engine() {
-        decks = 1;
-        maxBet = 20;
-        minBet = 1;
-        decks = 1;
-        money = 50;
+//        decks = 1;
+//        maxBet = 20;
+//        minBet = 1;
+//        money = 50;
 //        playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         continuePushed = true;
         isGame = false;
@@ -72,7 +71,7 @@ public class Engine {
         PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         return playerDAO.isAvailableName(login);
     }
-    //Add new player to DB
+    //Service method for engine.Add new player to DB
     private boolean addPlayerToDB(String name, String password, String email) {
         PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         if (playerDAO.addPlayerToDB(name, password, email)){
@@ -95,10 +94,10 @@ public class Engine {
     }
     //TODO I need change this
     public void setDefaultSettings(){
-        player.getSettings().setDecks(decks);
-        player.getSettings().setMaxBet(maxBet);
-        player.getSettings().setMinBet(minBet);
-        player.getSettings().setMoney(money);
+        player.getSettings().setDecks(2);
+        player.getSettings().setMaxBet(10);
+        player.getSettings().setMinBet(5);
+        player.getSettings().setMoney(100);
     }
     //Set settings from xml by login to player's settings
     public void getSettingsFromXml(String playerName) {
@@ -138,10 +137,14 @@ public class Engine {
     //Method run when player pushed new game button
     public void startNewGame(){
         getSettingsFromXml(player.getName());
+        //TODO Temp design
+        player.setMoney(player.getSettings().getMoney());
         createDecksAndAddToShoes(player.getSettings().getDecks());
         mixShoes();
+        player.clearHand();
+        dealer.clearHand();
     }
-    //Name method tell all
+    //Service method for engine. Name method tell all
     private void createDecksAndAddToShoes(int num) {
         for (int i = 0; i < num; i++) {
             ArrayList<Card> list = new CardDeck().getCardDeck();
@@ -150,7 +153,7 @@ public class Engine {
             }
         }
     }
-    
+    //Service method for engine.Mix cards in shoes
     private void mixShoes() {
         ArrayList<Card> tempList = new ArrayList<>();
         for (int i = 0; i < shoes.size(); i++) {
@@ -164,36 +167,55 @@ public class Engine {
         shoes = tempList;
     }
 
-
-
-    public void newGame(){
-//        try {
-//            getSettingsFromXml(player.getName());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (SAXException e) {
-//            e.printStackTrace();
-//        } catch (ParserConfigurationException e) {
-//            e.printStackTrace();
-//        }
-        createDecksAndAddToShoes(decks);
-        mixShoes();
-        player.clearHand();
-        dealer.clearHand();
-
+    public void deal(){
+        if (isGame){
+            dealOneCardToPlayer();
+        } else {
+            firstDealToAll();
+            isGame = true;
+        }
+        oneStep();
     }
 
+    public void firstDealToAll() {
+        if (bet >= player.getSettings().getMinBet()) {
+            player.addCardToHand(dealOneCard());
+            dealer.addCardToHand(dealOneCard());
+            player.addCardToHand(dealOneCard());
+            dealer.addCardToHand(dealOneCard());
+        } else if (bet < player.getSettings().getMinBet()) {
+            massage = "Your Bet is to small! Min bet is: " + player.getSettings().getMinBet();
+        } else if (bet > player.getSettings().getMaxBet()) {
+            massage = "Your Bet is to big! Max bet is: " + player.getSettings().getMaxBet();
+        }
+        oneStep();
+    }
+
+    public void dealOneCardToPlayer() {
+        if (isGame) {
+            player.addCardToHand(dealOneCard());
+        }
+        oneStep();
+    }
+
+    private Card dealOneCard() {
+        Card card = shoes.get(0);
+        shoes.remove(0);
+        return card;
+    }
 
     public void oneStep() {
         checkSumPlayerAndDealer();
     }
 
+//    ________________________________________________________________
 
+    //TODO Wrong way, it is should be service method for engine
     public void takeMoneyFromPlayerToBet(int moneyToBet) {
         if (moneyToBet > player.getMoney()) {
             massage = "You have not enough money!";
-        } else if ((moneyToBet + bet) > maxBet) {
-            massage = "Max bet: " + maxBet;
+        } else if ((moneyToBet + bet) > player.getSettings().getMaxBet()) {
+            massage = "Max bet: " + player.getSettings().getMaxBet();
         } else {
             setBet(player.takeMoney(moneyToBet));
         }
@@ -203,39 +225,12 @@ public class Engine {
         return shoes;
     }
 
-    public void firstDealToAll() {
-        if (bet >= minBet) {
-            player.addCardToHand(dealOneCard());
-            dealer.addCardToHand(dealOneCard());
-            player.addCardToHand(dealOneCard());
-            dealer.addCardToHand(dealOneCard());
-        } else if (bet < minBet) {
-            massage = "Your Bet is to small! Min bet is: " + minBet;
-        } else if (bet > maxBet) {
-            massage = "Your Bet is to big! Max bet is: " + maxBet;
-        }
-        oneStep();
-    }
-
-    public Card dealOneCard() {
-        Card card = shoes.get(0);
-        shoes.remove(0);
-        return card;
-    }
-
     public Player getDealer() {
         return dealer;
     }
 
     public Player getPlayer() {
         return player;
-    }
-
-    public void dealOneCardToPlayer() {
-        if (isGame) {
-            player.addCardToHand(dealOneCard());
-        }
-        oneStep();
     }
 
     public void dealCardsToDealer() {
@@ -256,29 +251,29 @@ public class Engine {
         if (player.getSumNumbers() > 21) {
             isGame = false;
             massage = "Game over. You lose!";
-            status = false;
+            isWin = false;
         }
         if (dealer.getSumNumbers() > 21 && player.getSumNumbers() <= 21) {
             isGame = false;
             massage = "Game over. You won!";
-            status = true;
+            isWin = true;
         }
         if (player.getSumNumbers() == 21) {
             isGame = false;
             massage = "Game over. You win! BlackJack";
-            status = true;
+            isWin = true;
         }
 
         if (dealer.getSumNumbers() == 21) {
             isGame = false;
             massage = "Game over. You lose!";
-            status = false;
+            isWin = false;
         }
 
-        if (player.getSumNumbers() > dealer.getSumNumbers() && player.getSumNumbers() <= 21) {
-            isGame = false;
+        if (player.getSumNumbers() > dealer.getSumNumbers() && player.getSumNumbers() <= 21 && !isGame) {
+//            isGame = false;
             massage = "Game over. You won!";
-            status = true;
+            isWin = true;
         }
 
     }
@@ -328,7 +323,7 @@ public class Engine {
 
     public void countWin() {
         int playerMoney = player.getMoney();
-        if (status) {
+        if (isWin) {
             playerMoney += bet * 2;
             player.setMoney(playerMoney);
             clearBet();

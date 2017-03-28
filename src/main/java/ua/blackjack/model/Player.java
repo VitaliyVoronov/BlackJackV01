@@ -3,7 +3,7 @@ package ua.blackjack.model;
 public class Player {
 
 	private int playerID;
-	private String name = null;
+	private String name;
 	private int money;
 	private int sumNumbers;
 	private Hand hand = new Hand();
@@ -100,13 +100,13 @@ public class Player {
 		settings.setName(name);
 	}
 
-	public void setSettingsParameters(int decks,int minBet,int maxBet,int money) {
-		setMoney(money);
-		settings.setDecks(decks);
-		settings.setMinBet(minBet);
-		settings.setMaxBet(maxBet);
-		settings.setMoney(money);
-	}
+//	public void setSettingsParameters(int decks,int minBet,int maxBet,int money) {
+//		setMoney(money);
+//		settings.setDecks(decks);
+//		settings.setMinBet(minBet);
+//		settings.setMaxBet(maxBet);
+//		settings.setMoney(money);
+//	}
 
 	public void clearSumNumbers() {
 		sumNumbers = 0;

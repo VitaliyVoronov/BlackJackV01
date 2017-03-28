@@ -116,7 +116,10 @@ public class MainServlet extends HttpServlet {
                 Player player = engine.getPlayer();
                 Player dealer = engine.getDealer();
                 String query = "" + request.getQueryString();
-                engine.startNewGame();
+
+                if (query.equals("action=NewGame")) {
+                    engine.startNewGame();
+                }
 
                 if (query.equals("action=DEAL") && engine.isContinuePushed()) {
                     engine.firstDealToAll();
@@ -132,6 +135,7 @@ public class MainServlet extends HttpServlet {
                     engine.countWin();
                     engine.clearBet();
                     engine.clearPoints();
+                    engine.setGameFalse();
                 }
 
                 if (query.equals("bet=1") && !engine.isDealPushed() && engine.isContinuePushed()) {
@@ -153,8 +157,8 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("shirts", listShirt);
 
                 if (query.equals("action=STAND") && engine.isGame()) {
-                    engine.dealCardsToDealer();
                     engine.setGameFalse();
+                    engine.dealCardsToDealer();
                 }
 
                 if (engine.isGame() || !engine.isContinuePushed()) {

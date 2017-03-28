@@ -31,7 +31,6 @@
         <div id="playerHand">
 
             ${namePlayer}
-            ${moneyPlayer}
             <c:forEach var="card" items="${cardsPlayer}">
                 <img src='${card}' alt='card' />
             </c:forEach>
