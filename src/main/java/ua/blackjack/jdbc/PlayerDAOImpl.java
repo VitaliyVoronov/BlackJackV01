@@ -1,13 +1,15 @@
 package ua.blackjack.jdbc;
 import org.apache.log4j.Logger;
-import ua.blackjack.engine.Engine;
 import ua.blackjack.model.Player;
 import ua.blackjack.model.PlayerDAO;
 
 import java.sql.*;
 
 /**
- * Created by Администратор on 08.11.2016.
+ * This class work with DB
+ * @author vitaliy
+ * @project BlackJackV01
+ * @since 3/25/17
  */
 public class PlayerDAOImpl implements PlayerDAO {
 
@@ -27,9 +29,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         connector = new JdbcConnector();
         con = connector.getConnection();
         try {
+            logger.trace("Try to create statement");
             st = con.createStatement();
+            logger.trace("Statement created");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Statement did not create!",e);
         }
 
         /*try {
@@ -47,12 +51,18 @@ public class PlayerDAOImpl implements PlayerDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-
     }
 
-    public boolean addPlayerToDB(String name, String password, String email){
+    /**
+     * Add new player to Db
+     * @param login
+     * @param password
+     * @param email
+     * @return true if added success and false if no
+     */
+    public boolean addPlayerToDB(String login, String password, String email){
         try {
-            st.execute("INSERT INTO players(name,password,email) VALUES('" + name.trim() + "','"
+            st.execute("INSERT INTO players(name,password,email) VALUES('" + login + "','"
                     + password + "','" + email + "')");
             return true;
         } catch (SQLException e) {
@@ -61,16 +71,22 @@ public class PlayerDAOImpl implements PlayerDAO {
         return false;
     }
 
-    public boolean isAvailableName(String name) {
+    /**
+     * Check if login is free
+     * @param login
+     * @return true if login is free and false if busy
+     */
+    public boolean isAvailableName(String login) {
         String str = "";
         ResultSet rs = null;
         try {
-            rs = st.executeQuery("SELECT name FROM players WHERE name = '"+name.trim()+"'");
+            logger.trace("Use executeQuery method from statement");
+            rs = st.executeQuery("SELECT name FROM players WHERE name = '"+login.trim()+"'");
             while (rs.next()) {
                 str += rs.getString(1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Problem with statement",e);
         }
         if (str.equals("")){
             return true;
@@ -79,36 +95,36 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
     }
 
-    public boolean checkNameAndPassword(String name, String password){
-        String str = "";
-        try {
-            ResultSet rs = st.executeQuery("SELECT name FROM players WHERE name = '"+name+"' AND password ='"+password+"'");
-            while (rs.next()) {
-                str = rs.getString(1);
-                System.out.println(rs.getString(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        if (!str.equals("")){
-            return true;
-        } else {
-            return false;
-        }
+//    public boolean checkNameAndPassword(String name, String password){
+//        String str = "";
+//        try {
+//            ResultSet rs = st.executeQuery("SELECT name FROM players WHERE name = '"+name+"' AND password ='"+password+"'");
+//            while (rs.next()) {
+//                str = rs.getString(1);
+//                System.out.println(rs.getString(1));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        if (!str.equals("")){
+//            return true;
+//        } else {
+//            return false;
+//        }
+//
+//    }
 
-    }
-
-    public Player getPlayerFromDB(String name) throws SQLException {
-        Player player = new Player();
-        ResultSet rs = st.executeQuery("SELECT * FROM players WHERE name = '"+name+"'");
-        while (rs.next()) {
-            player.setName(rs.getString(2));
-            player.setPassword(rs.getString(3));
-            player.setEmail(rs.getString(4));
-        }
-        rs.close();
-        return player;
-    }
+//    public Player getPlayerFromDB(String name) throws SQLException {
+//        Player player = new Player();
+//        ResultSet rs = st.executeQuery("SELECT * FROM players WHERE name = '"+name+"'");
+//        while (rs.next()) {
+//            player.setName(rs.getString(2));
+//            player.setPassword(rs.getString(3));
+//            player.setEmail(rs.getString(4));
+//        }
+//        rs.close();
+//        return player;
+//    }
 
 //    public void getAllFromDB(){
 //        try {
@@ -121,16 +137,16 @@ public class PlayerDAOImpl implements PlayerDAO {
 //        }
 //    }
 
-    public void closeConnection() {
-        try {
-            st.close();
-            con.close();
-//            connector.closeConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    public void closeConnection() {
+//        try {
+//            st.close();
+//            con.close();
+////            connector.closeConnection();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
-    }
+//    }
 
     @Override
     public boolean createPlayer(Player player) {
@@ -166,12 +182,18 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
     }
 
-    //return player from db or null if no player with this name or password
+    /**
+     *
+     * @param name
+     * @param password
+     * @return player from db or null if no player with this name or password
+     */
     @Override
     public Player getPlayerByNameAndPassword(String name, String password) {
         Player player = null;
         ResultSet rs;
         try {
+            logger.trace("Use executeQuery method from statement");
             rs = st.executeQuery(SELECT+"WHERE name = '"+name+"'"+"AND password = '"+password+"'");
             while (rs.next()) {
                 player = new Player();
@@ -182,21 +204,26 @@ public class PlayerDAOImpl implements PlayerDAO {
             }
             rs.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Problem with statement",e);
         }
-
         return player;
     }
 
+    /**
+     * Update player info in DB
+     * @param player
+     * @return true if update was successful and false if not
+     */
     @Override
     public boolean updatePlayer(Player player) {
         int numChangeColumn = 0;
         try {
+            logger.trace("Try to update player in DB");
             numChangeColumn = st.executeUpdate(UPDATE+"SET `name`='"+player.getName()+"" +
                     "', `password`='"+player.getPassword()+"', `email`='"+player.getEmail()+"" +
                     "' WHERE `id`='"+player.getPlayerID()+"'");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Problem with statement",e);
         }
 
         if (numChangeColumn > 0 ){

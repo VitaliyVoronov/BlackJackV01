@@ -1,5 +1,8 @@
 package ua.blackjack.jdbc;
 
+import org.apache.log4j.Logger;
+import ua.blackjack.fileWorkers.MyFileReader;
+
 import java.io.*;
 import java.util.PropertyResourceBundle;
 
@@ -9,6 +12,8 @@ import java.util.PropertyResourceBundle;
  * @since 3/25/17
  */
 public class ConfigurationManager {
+
+    final static Logger logger = Logger.getLogger(ConfigurationManager.class);
 
     private static ConfigurationManager instance;
     private final String FILENAME = getClass().getResource("/db.properties").getPath();
@@ -20,20 +25,7 @@ public class ConfigurationManager {
     private String password;
 
     private ConfigurationManager(){
-        try {
-            fis = new FileInputStream(FILENAME);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            resource = new PropertyResourceBundle(fis);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        url = resource.getString("url");
-        driver = resource.getString("driver");
-        user = resource.getString("user");
-        password = resource.getString("password");
+        doConfiguration();
     }
 
     public static ConfigurationManager getInstance() {
@@ -41,6 +33,25 @@ public class ConfigurationManager {
             instance = new ConfigurationManager();
         }
         return instance;
+    }
+
+    private void doConfiguration(){
+        try {
+            logger.trace("Try to create FileInputStream to db.properties");
+            fis = new FileInputStream(FILENAME);
+        } catch (FileNotFoundException e) {
+            logger.error("Failed to create FileInputStream to db.properties",e);
+        }
+        try {
+            logger.trace("Try to create PropertyResourceBundle with FileInputStream to db.properties");
+            resource = new PropertyResourceBundle(fis);
+        } catch (IOException e) {
+            logger.trace("Failed to create PropertyResourceBundle with FileInputStream to db.properties",e);
+        }
+        url = resource.getString("url");
+        driver = resource.getString("driver");
+        user = resource.getString("user");
+        password = resource.getString("password");
     }
 
     public String getUrl() {

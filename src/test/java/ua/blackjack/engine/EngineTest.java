@@ -105,9 +105,4 @@ public class EngineTest {
         assertNotNull(engine.getPlayer().getSettings());
     }
 
-    @Test
-    public void changeSettings() throws Exception {
-
-    }
-
 }

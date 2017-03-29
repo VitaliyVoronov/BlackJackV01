@@ -31,15 +31,14 @@ public class JdbcConnector {
                     cfg.getPassword());
             logger.trace("Got connection.");
         } catch (ClassNotFoundException e) {
-            logger.debug("Can't load database driver.", e);
+            logger.fatal("Can't load database driver.", e);
 
         } catch (SQLException e) {
-            logger.debug("Can't connect to database.", e);
+            logger.fatal("Can't connect to database.", e);
         }
         if(con ==null) {
-            logger.debug("Driver type is not correct in URL");
+            logger.warn("Driver type is not correct in URL");
         }
-
         return con;
     }
     //Close connection

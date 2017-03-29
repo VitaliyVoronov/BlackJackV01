@@ -100,9 +100,16 @@ public class Engine {
         }
         return false;
     }
-    //Add player to db and add default settings to xml by this player.
+
+    /**
+     * Add player to db and add default settings to xml by this player.
+     * @param login
+     * @param password
+     * @param email
+     * @return true if all OK and false if something wrong
+     */
     public boolean signUp(String login, String password, String email){
-        if (addPlayerToDB(login,password,email)){
+        if (addPlayerToDB(login.trim(),password,email)){
             player = new Player();
             player.setName(login);
             setDefaultSettings();
@@ -125,7 +132,12 @@ public class Engine {
             return false;
         }
     }
-    //Set settings from xml by login to player's settings
+
+    /**
+     * Set settings from xml by login to player's settings
+     * @param playerName
+     * @return true if all OK and false if something wrong
+     */
     public boolean getSettingsFromXml(String playerName) {
         if (playerName != null && playerName.length() > 0) {
             MyFileReader myFileReader = new MyFileReader();
@@ -146,7 +158,15 @@ public class Engine {
             return false;
         }
     }
-    //When player set new settings its change in player and save in xml file
+
+    /**
+     * When player set new settings its change in player and save in xml file
+     * @param decks
+     * @param minBet
+     * @param maxBet
+     * @param money
+     * @return true if all OK and false if something wrong
+     */
     public boolean changeSettings(int decks, int minBet, int maxBet, int money){
         if (player != null) {
             player.getSettings().setDecks(decks);
@@ -158,7 +178,12 @@ public class Engine {
         }
         return false;
     }
-    //Service method for engine. This method save new settings to xml and return true or false.
+
+    /**
+     * Service method for engine. This method save new settings to xml and return true or false.
+     * @param newSettings
+     * @return true if all OK and false if something wrong
+     */
     private boolean saveNewSettingsToXML(MySettings newSettings){
         MyFileWriter myFileWriter = new MyFileWriter();
         if(myFileWriter.writeSettingsToFile(newSettings, filePath)){
@@ -171,7 +196,10 @@ public class Engine {
     public boolean isEnter(){
         return isEnter;
     }
-    //Method run when player pushed new game button
+
+    /**
+     * Method run when player pushed new game button
+     */
     public void startNewGame(){
         getSettingsFromXml(player.getName());
         //TODO Temp design
@@ -214,18 +242,22 @@ public class Engine {
         oneStep();
     }
 
-    public void firstDealToAll() {
+    public boolean firstDealToAll() {
         if (bet >= player.getSettings().getMinBet()) {
             player.addCardToHand(dealOneCard());
             dealer.addCardToHand(dealOneCard());
             player.addCardToHand(dealOneCard());
             dealer.addCardToHand(dealOneCard());
+            oneStep();
+            return true;
         } else if (bet < player.getSettings().getMinBet()) {
             massage = "Your Bet is to small! Min bet is: " + player.getSettings().getMinBet();
+            return false;
         } else if (bet > player.getSettings().getMaxBet()) {
             massage = "Your Bet is to big! Max bet is: " + player.getSettings().getMaxBet();
+            return false;
         }
-        oneStep();
+        return false;
     }
 
     public void dealOneCardToPlayer() {
