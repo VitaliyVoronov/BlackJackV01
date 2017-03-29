@@ -11,7 +11,7 @@ import ua.blackjack.model.*;
 import java.util.ArrayList;
 
 /**
- * This is controller fo all program
+ * This is controller for all program
  *
  * @author vitaliy
  * @project BlackJackV01
@@ -73,7 +73,7 @@ public class Engine {
     }
 
     /**
-     * Check if login is busy
+     * Check if login is free
      * @param login
      * @return Return false if login is busy and true is free
      */
