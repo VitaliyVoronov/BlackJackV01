@@ -6,10 +6,10 @@ public class Player {
 	private String name;
 	private int money;
 	private int sumNumbers;
-	private Hand hand = new Hand();
 	private String email;
 	private String password;
 
+	private Hand hand = new Hand();
 	private MySettings settings = new MySettings();
 
 	public Player() {
@@ -42,6 +42,22 @@ public class Player {
 		this.sumNumbers += sumNumbers;
 	}
 
+	public void countCardsNumbers(){
+		int tempSum = 0;
+		int sumA = 0;
+		for(Card c : hand.getCards()){
+			tempSum += c.getNumber();
+			if (c.getDignity() == "a"){
+				sumA++;
+			}
+		}
+		if (tempSum > 21 && sumA > 0){
+			tempSum -= sumA * 10;
+		}
+		sumNumbers = tempSum;
+
+	}
+
 	public Hand getHand() {
 		return hand;
 	}
@@ -51,6 +67,7 @@ public class Player {
 	}
 
 	public int getSumNumbers() {
+		countCardsNumbers();
 		return sumNumbers;
 	}
 
@@ -99,14 +116,6 @@ public class Player {
 	public void setSettingsName(){
 		settings.setName(name);
 	}
-
-//	public void setSettingsParameters(int decks,int minBet,int maxBet,int money) {
-//		setMoney(money);
-//		settings.setDecks(decks);
-//		settings.setMinBet(minBet);
-//		settings.setMaxBet(maxBet);
-//		settings.setMoney(money);
-//	}
 
 	public void clearSumNumbers() {
 		sumNumbers = 0;

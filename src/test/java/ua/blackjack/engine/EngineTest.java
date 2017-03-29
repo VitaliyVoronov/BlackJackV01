@@ -2,228 +2,112 @@ package ua.blackjack.engine;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.blackjack.model.MySettings;
 import ua.blackjack.model.Player;
 
 import static org.junit.Assert.*;
 
 /**
+ * Tests for Engine class
  * @author vitaliy
  * @project BlackJackV01
- * @since 3/27/17
+ * @since 3/29/17
  */
 public class EngineTest {
 
-//    ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-    Engine engine = null;
+    Engine engine;
 
     @Before
-    public void setup(){
-        engine = new Engine(); //(Engine) ctx.getBean("engine");
+    public void setUp() throws Exception {
+        engine = new Engine();
     }
-
-//    @Test
-//    public void setDefaultSettings() throws Exception {
-//
-//    }
 
     @Test
-    public void getSettingsFromXml() throws Exception {
-        engine.getSettingsFromXml("test");
-        MySettings settings = engine.getPlayer().getSettings();
-        assertEquals(1,settings.getDecks());
-        assertEquals(1,settings.getMinBet());
-        assertEquals(2,settings.getMaxBet());
-        assertEquals(10,settings.getMoney());
+    public void signInSuccess() throws Exception {
+        assertTrue(engine.signIn("test","11111"));
     }
 
-//    @Test
-//    public void saveNewSettingsToXML() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void newGame() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void getPlayerFromDB() throws Exception {
-//        engine.getPlayerFromDB("test");
-//        Player testPlayer = engine.getPlayer();
-//        assertNotNull(testPlayer);
-//        assertEquals("test",testPlayer.getName());
-//    }
-//
-//    @Test
-//    public void oneStep() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void createDecksAndAddToShoes() throws Exception {
-//        engine.createDecksAndAddToShoes(0);
-//        assertEquals(52, engine.getShoes().size());
-//    }
-//
-//    @Test
-//    public void takeMoneyFromPlayerToBet() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void getShoes() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void firstDealToAll() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void dealOneCard() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void getDealer() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void getPlayer() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void dealOneCardToPlayer() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void dealCardsToDealer() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void checkSumPlayerAndDealer() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void getMassage() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void setMassage() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void setBet() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void getBet() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void setGameTrue() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void setGameFalse() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void isGame() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void isStandPushed() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void setStandPushed() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void isDealPushed() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void setDealPushed() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void isContinuePushed() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void setContinuePushed() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void clearTable() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void countWin() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void clearBet() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void checkPassword() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void isAvailableLogin() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void addPlayerToDB() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void checkNameAndPassword() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void isEnter() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void setEnter() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void clearPoints() throws Exception {
-//
-//    }
+    @Test
+    public void signInIncorrectPassword() throws Exception {
+        assertFalse(engine.signIn("test","22222"));
+    }
+
+    @Test
+    public void signInIncorrectLogin() throws Exception {
+        assertFalse(engine.signIn("testFail","11111"));
+    }
+
+    @Test
+    public void signInIncorrectLoginAndPassword() throws Exception {
+        assertFalse(engine.signIn("testFail","22222"));
+    }
+
+    @Test
+    public void signInWithoutLoginAndPassword() throws Exception {
+        assertFalse(engine.signIn("",""));
+    }
+
+    @Test
+    public void signInWithoutLogin() throws Exception {
+        assertFalse(engine.signIn("","11111"));
+    }
+
+    @Test
+    public void signInWithoutPassword() throws Exception {
+        assertFalse(engine.signIn("test",""));
+    }
+
+    @Test
+    public void isAvailableLoginFalse() throws Exception {
+        assertFalse(engine.isAvailableLogin("test"));
+    }
+
+    @Test
+    public void isAvailableLoginTrue() throws Exception {
+        assertTrue(engine.isAvailableLogin("notestlogin"));
+    }
+
+    @Test
+    public void isAvailableLoginWithoutLogin() throws Exception {
+        assertFalse(engine.isAvailableLogin(""));
+    }
+
+    @Test
+    public void setDefaultSettingsWithoutPlayer() throws Exception {
+        assertFalse(engine.setDefaultSettings());
+    }
+
+    @Test
+    public void setDefaultSettingsWithPlayer() throws Exception {
+        engine.setPlayer(new Player("test"));
+        assertTrue(engine.setDefaultSettings());
+    }
+
+    @Test
+    public void setDefaultSettingsSuccess() throws Exception {
+        engine.setPlayer(new Player("test"));
+        engine.setDefaultSettings();
+        Player player = engine.getPlayer();
+        assertEquals(2,player.getSettings().getDecks());
+        assertEquals(5,player.getSettings().getMinBet());
+        assertEquals(10,player.getSettings().getMaxBet());
+        assertEquals(100,player.getSettings().getMoney());
+    }
+
+    @Test
+    public void getSettingsFromXmlWithoutPlayer() throws Exception {
+        assertFalse(engine.getSettingsFromXml(""));
+    }
+
+    @Test
+    public void getSettingsFromXmlSuccess() throws Exception {
+        engine.setPlayer(new Player("test"));
+        assertTrue(engine.getSettingsFromXml(engine.getPlayer().getName()));
+        assertNotNull(engine.getPlayer().getSettings());
+    }
+
+    @Test
+    public void changeSettings() throws Exception {
+
+    }
 
 }

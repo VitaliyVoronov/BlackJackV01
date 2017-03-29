@@ -2,6 +2,9 @@
 ### Java template
 *.class
 
+#My files only for me
+questions.txt
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

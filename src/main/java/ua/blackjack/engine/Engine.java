@@ -56,7 +56,12 @@ public class Engine {
         filePath = getClass().getResource("/playerSettings.xml").getPath();
     }
 
-    //Use this method for authorization
+    /**
+     * Use this method for authorization
+     * @param login
+     * @param password
+     * @return true if sign in and false if not sign in
+     */
     public boolean signIn(String login, String password){
         PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         player = playerDAO.getPlayerByNameAndPassword(login,password);
@@ -66,12 +71,28 @@ public class Engine {
             return false;
         }
     }
-    //Return false if login is busy and true is free
+
+    /**
+     * Check if login is busy
+     * @param login
+     * @return Return false if login is busy and true is free
+     */
     public boolean isAvailableLogin(String login) {
-        PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
-        return playerDAO.isAvailableName(login);
+        if (login.length() > 0 && login != null) {
+            PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
+            return playerDAO.isAvailableName(login);
+        } else {
+            return false;
+        }
     }
-    //Service method for engine.Add new player to DB
+
+    /**
+     * Service method for engine. Add new player to DB.
+     * @param name
+     * @param password
+     * @param email
+     * @return return true if player added to DB
+     */
     private boolean addPlayerToDB(String name, String password, String email) {
         PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         if (playerDAO.addPlayerToDB(name, password, email)){
@@ -79,7 +100,7 @@ public class Engine {
         }
         return false;
     }
-    //Add player to db and add default settings to xml by this player
+    //Add player to db and add default settings to xml by this player.
     public boolean signUp(String login, String password, String email){
         if (addPlayerToDB(login,password,email)){
             player = new Player();
@@ -93,32 +114,48 @@ public class Engine {
 
     }
     //TODO I need change this
-    public void setDefaultSettings(){
-        player.getSettings().setDecks(2);
-        player.getSettings().setMaxBet(10);
-        player.getSettings().setMinBet(5);
-        player.getSettings().setMoney(100);
+    public boolean setDefaultSettings(){
+        if (player != null) {
+            player.getSettings().setDecks(2);
+            player.getSettings().setMinBet(5);
+            player.getSettings().setMaxBet(10);
+            player.getSettings().setMoney(100);
+            return true;
+        } else {
+            return false;
+        }
     }
     //Set settings from xml by login to player's settings
-    public void getSettingsFromXml(String playerName) {
-        MyFileReader myFileReader = new MyFileReader();
-        MySettings mySettings = myFileReader.getSettingsByNameFromXML(playerName,filePath);
-        if (mySettings != null){
-            player.setSettings(mySettings);
-        } else {
-            setDefaultSettings();
-            saveNewSettingsToXML(player.getSettings());
+    public boolean getSettingsFromXml(String playerName) {
+        if (playerName != null && playerName.length() > 0) {
+            MyFileReader myFileReader = new MyFileReader();
+            MySettings mySettings = myFileReader.getSettingsByNameFromXML(playerName, filePath);
+            if (mySettings != null) {
+                player.setSettings(mySettings);
+                return true;
+            } else {
+                if (setDefaultSettings()) {
+                    saveNewSettingsToXML(player.getSettings());
 //            mySettings = myFileReader.getSettingsByNameFromXML(playerName,filePath);
-            logger.debug("No player's settings for "+ playerName);
+                    logger.debug("No player's settings for " + playerName);
+                    return true;
+                }
+                return false;
+            }
+        } else {
+            return false;
         }
     }
     //When player set new settings its change in player and save in xml file
     public boolean changeSettings(int decks, int minBet, int maxBet, int money){
-        player.getSettings().setDecks(decks);
-        player.getSettings().setMinBet(minBet);
-        player.getSettings().setMaxBet(maxBet);
-        player.getSettings().setMoney(money);
-        saveNewSettingsToXML(player.getSettings());
+        if (player != null) {
+            player.getSettings().setDecks(decks);
+            player.getSettings().setMinBet(minBet);
+            player.getSettings().setMaxBet(maxBet);
+            player.getSettings().setMoney(money);
+            saveNewSettingsToXML(player.getSettings());
+            return true;
+        }
         return false;
     }
     //Service method for engine. This method save new settings to xml and return true or false.
@@ -233,6 +270,14 @@ public class Engine {
         return player;
     }
 
+    /**
+     * Use only for tests
+     * @param player
+     */
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+
     public void dealCardsToDealer() {
         while (true) {
             if (dealer.getSumNumbers() < 17) {
@@ -302,11 +347,9 @@ public class Engine {
         return isGame;
     }
 
-
     public boolean isDealPushed() {
         return dealPushed;
     }
-
 
     public boolean isContinuePushed() {
         return continuePushed;
