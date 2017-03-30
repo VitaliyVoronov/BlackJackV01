@@ -74,7 +74,7 @@ public class PlayerDAOImpl implements PlayerDAO {
     /**
      * Check if login is free
      * @param login
-     * @return true if login is free and false if busy
+     * @return true if login is free and false if busyup Founder track and assigned to a group.
      */
     public boolean isAvailableName(String login) {
         String str = "";

@@ -1,15 +1,19 @@
 package ua.blackjack.model;
 
 /**
- * Created by Администратор on 09.11.2016.
+ * Settings for player game
+ *
+ * @author vitaliy
+ * @project BlackJackV01
+ * @since 3/25/17
  */
 public class MySettings implements Cloneable{
 
     private String name;
-    private int decks = 1;
-    private int minBet = 1;
-    private int maxBet = 20;
-    private int money = 100;
+    private int decks;
+    private int minBet;
+    private int maxBet;
+    private int money;
 
     public MySettings() {
     }

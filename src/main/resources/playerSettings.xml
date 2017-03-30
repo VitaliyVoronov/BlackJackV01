@@ -18,7 +18,7 @@
         <decks>3</decks>
         <minBet>5</minBet>
         <maxBet>10</maxBet>
-        <money>100</money>
+        <money>150</money>
     </player>
     <player>
         <name>default</name>

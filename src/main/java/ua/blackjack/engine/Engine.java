@@ -352,7 +352,6 @@ public class Engine {
             massage = "Game over. You won!";
             isWin = true;
         }
-
     }
 
     public String getMassage() {

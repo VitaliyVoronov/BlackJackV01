@@ -34,7 +34,6 @@ public class MyFileReader {
                     mySettings = ms;
                     break;
                 }
-                logger.info("Maybe settings not found! Check it in th file: "+filePath);
             }
             logger.trace("Method getSettingsByNameFromXML return mySettings: "+mySettings.getName());
             return mySettings;
