@@ -36,11 +36,6 @@ public class MainServlet extends HttpServlet {
         } else if (request.getRequestURI().equals("/enter")){
             logger.trace("Try to enter: "+request.getParameter("name"));
             if (engine.signIn(request.getParameter("name"),request.getParameter("password"))){
-//            if (engine.checkNameAndPassword(request.getParameter("name"), request.getParameter("password"))) {
-//                engine.getPlayerFromDB(request.getParameter("name"));
-                engine.setEnter(true);
-                //TODO I do not like how it looks like
-                engine.getSettingsFromXml(engine.getPlayer().getName());
                 logger.trace("Entered: "+request.getParameter("name"));
 
                 request.getSession().setAttribute("engine", engine);
@@ -95,7 +90,8 @@ public class MainServlet extends HttpServlet {
             int minBet = Integer.parseInt(request.getParameter("minBet"));
             int maxBet = Integer.parseInt(request.getParameter("maxBet"));
             int money = Integer.parseInt(request.getParameter("moneySet"));
-            //TODO This have to do auto
+
+            //TODO This have to do in engine
             if (decks != 0 && minBet != 0 && maxBet != 0 && money != 0){
                 logger.debug("Try to change settings!");
                 engine.changeSettings(decks,minBet,maxBet,money);
@@ -139,14 +135,14 @@ public class MainServlet extends HttpServlet {
                 }
 
                 if (query.equals("bet=1") && !engine.isDealPushed() && engine.isContinuePushed()) {
-                    engine.takeMoneyFromPlayerToBet(1);
+                    engine.bet(1);
                 }
                 if (query.equals("bet=5") && !engine.isDealPushed() && engine.isContinuePushed()) {
-                    engine.takeMoneyFromPlayerToBet(5);
+                    engine.bet(5);
 
                 }
                 if (query.equals("bet=10") && !engine.isDealPushed() && engine.isContinuePushed()) {
-                    engine.takeMoneyFromPlayerToBet(10);
+                    engine.bet(10);
                 }
 
                 request.setAttribute("bet", engine.getBet());

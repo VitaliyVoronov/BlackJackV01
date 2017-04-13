@@ -36,21 +36,6 @@ public class PlayerDAOImpl implements PlayerDAO {
             logger.error("Statement did not create!",e);
         }
 
-        /*try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/blackjack?user=root&password=12345");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            st = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 
     /**

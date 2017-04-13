@@ -95,13 +95,13 @@ public class EngineTest {
 
     @Test
     public void getSettingsFromXmlWithoutPlayer() throws Exception {
-        assertFalse(engine.getSettingsFromXml(""));
+        assertFalse(engine.getSettingsFromXmlAndSetItToPlayer(""));
     }
 
     @Test
     public void getSettingsFromXmlSuccess() throws Exception {
         engine.setPlayer(new Player("test"));
-        assertTrue(engine.getSettingsFromXml(engine.getPlayer().getName()));
+        assertTrue(engine.getSettingsFromXmlAndSetItToPlayer(engine.getPlayer().getName()));
         assertNotNull(engine.getPlayer().getSettings());
     }
 

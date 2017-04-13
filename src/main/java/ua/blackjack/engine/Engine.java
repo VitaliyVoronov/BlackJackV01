@@ -66,6 +66,8 @@ public class Engine {
         PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
         player = playerDAO.getPlayerByNameAndPassword(login,password);
         if (player != null){
+            getSettingsFromXmlAndSetItToPlayer(login);
+            setEnter(true);
             return true;
         } else {
             return false;
@@ -94,14 +96,17 @@ public class Engine {
      * @return return true if player added to DB
      */
     private boolean addPlayerToDB(String name, String password, String email) {
-        PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
-        if (playerDAO.addPlayerToDB(name, password, email)){
-            return true;
+        if (name != null || password != null || email != null){
+            PlayerDAOImpl playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
+            if (playerDAO.addPlayerToDB(name, password, email)){
+                return true;
+            }
         }
         return false;
     }
 
     /**
+     * Registration method
      * Add player to db and add default settings to xml by this player.
      * @param login
      * @param password
@@ -138,7 +143,7 @@ public class Engine {
      * @param playerName
      * @return true if all OK and false if something wrong
      */
-    public boolean getSettingsFromXml(String playerName) {
+    public boolean getSettingsFromXmlAndSetItToPlayer(String playerName) {
         if (playerName != null && playerName.length() > 0) {
             MyFileReader myFileReader = new MyFileReader();
             MySettings mySettings = myFileReader.getSettingsByNameFromXML(playerName, filePath);
@@ -148,7 +153,6 @@ public class Engine {
             } else {
                 if (setDefaultSettings()) {
                     saveNewSettingsToXML(player.getSettings());
-//            mySettings = myFileReader.getSettingsByNameFromXML(playerName,filePath);
                     logger.debug("No player's settings for " + playerName);
                     return true;
                 }
@@ -201,7 +205,7 @@ public class Engine {
      * Method run when player pushed new game button
      */
     public void startNewGame(){
-        getSettingsFromXml(player.getName());
+        getSettingsFromXmlAndSetItToPlayer(player.getName());
         //TODO Temp design
         player.setMoney(player.getSettings().getMoney());
         createDecksAndAddToShoes(player.getSettings().getDecks());
@@ -275,6 +279,10 @@ public class Engine {
 
     public void oneStep() {
         checkSumPlayerAndDealer();
+    }
+
+    public void bet(int moneyToBet){
+        takeMoneyFromPlayerToBet(moneyToBet);
     }
 
 //    ________________________________________________________________
