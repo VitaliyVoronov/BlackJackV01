@@ -58,7 +58,7 @@
                 <input  name="action" type="submit" value="DEAL" >
             </form>
             <form method="get" action="/game">
-                <input  name="action" type="submit" value="CONTINUE" >
+                <input  name="action" type="submit" value="New game" >
             </form>
             <form method="get" action="login.jsp">
                 <input  name="action" type="submit" value="Main menu" >

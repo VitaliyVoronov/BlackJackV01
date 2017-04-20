@@ -9,6 +9,7 @@ import ua.blackjack.jdbc.PlayerDAOImpl;
 import ua.blackjack.model.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is controller for all program
@@ -24,37 +25,90 @@ public class Engine {
 
     ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
-//    private int decks;
-//    private int maxBet;
-//    private int minBet;
-//    private int money;
     private int bet;
-//    private PlayerDAOImpl playerDAO;
-    private ArrayList<Card> shoes;
+    private List<Card> shoes;
     private Player dealer;
     private Player player;
     private String massage;
     private boolean standPushed;
     private boolean dealPushed;
-    private boolean continuePushed;
+    private boolean newGamePushed;
     private boolean isGame;
     private boolean isWin;
-    private boolean isEnter;
+    private boolean isSignIn;
     private String filePath;
 
     public Engine() {
-//        decks = 1;
-//        maxBet = 20;
-//        minBet = 1;
-//        money = 50;
-//        playerDAO = (PlayerDAOImpl) ctx.getBean("playerDAO");
-        continuePushed = true;
+        newGamePushed = true;
         isGame = false;
         massage = "";
         shoes = new ArrayList();
         dealer = (Player) ctx.getBean("dealer");
         filePath = getClass().getResource("/playerSettings.xml").getPath();
     }
+
+    //TODO new game if isGame = false
+    public boolean newGame(){
+        if (!isGame) {
+            setNewGamePushed(true);
+            clearTable();
+            countWin();
+            clearBet();
+            clearPoints();
+            setGameFalse();
+            setMassage("Make your bet!");
+            return true;
+        } else {
+            setMassage("End current game!");
+            return false;
+        }
+    }
+
+    public boolean hit(){
+        if (dealOneCardToPlayer()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean stand(){
+        if (isGame()) {
+            setGameFalse();
+            dealCardsToDealer();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Use when player push deal button
+     * @return true if was start new game
+     */
+    public boolean deal(){
+        if (isNewGamePushed()){
+            firstDealToAll();
+            if (player.getHand().getCards().size() > 0 && dealer.getHand().getCards().size() > 0) {
+                setNewGamePushed(false);
+                setGameTrue();
+            }
+            return true;
+        } else {
+            setMassage("Deal cards when start new game!");
+            return false;
+        }
+    }
+
+    //    public void deal(){
+//        if (isGame){
+//            dealOneCardToPlayer();
+//        } else {
+//            firstDealToAll();
+//            isGame = true;
+//        }
+//        oneStep();
+//    }
 
     /**
      * Use this method for authorization
@@ -67,7 +121,7 @@ public class Engine {
         player = playerDAO.getPlayerByNameAndPassword(login,password);
         if (player != null){
             getSettingsFromXmlAndSetItToPlayer(login);
-            setEnter(true);
+            setSignIn(true);
             return true;
         } else {
             return false;
@@ -114,6 +168,12 @@ public class Engine {
      * @return true if all OK and false if something wrong
      */
     public boolean signUp(String login, String password, String email){
+        if(!isAvailableLogin(login)){
+            setMassage("This login is busy!");
+            logger.debug("Login is busy!");
+            return false;
+        }
+        logger.trace("Try to add new player to DB!");
         if (addPlayerToDB(login.trim(),password,email)){
             player = new Player();
             player.setName(login);
@@ -122,6 +182,7 @@ public class Engine {
             player = null;
             return true;
         }
+        logger.debug("Fail to add new player to DB!");
         return false;
 
     }
@@ -196,15 +257,15 @@ public class Engine {
             return false;
         }
     }
-    //If player sign in isEnter have to return true else false.
-    public boolean isEnter(){
-        return isEnter;
+    //If player sign in isSignIn have to return true else false.
+    public boolean isSignIn(){
+        return isSignIn;
     }
 
     /**
      * Method run when player pushed new game button
      */
-    public void startNewGame(){
+    public void startGame(){
         getSettingsFromXmlAndSetItToPlayer(player.getName());
         //TODO Temp design
         player.setMoney(player.getSettings().getMoney());
@@ -236,16 +297,6 @@ public class Engine {
         shoes = tempList;
     }
 
-    public void deal(){
-        if (isGame){
-            dealOneCardToPlayer();
-        } else {
-            firstDealToAll();
-            isGame = true;
-        }
-        oneStep();
-    }
-
     public boolean firstDealToAll() {
         if (bet >= player.getSettings().getMinBet()) {
             player.addCardToHand(dealOneCard());
@@ -264,11 +315,15 @@ public class Engine {
         return false;
     }
 
-    public void dealOneCardToPlayer() {
+    public boolean dealOneCardToPlayer() {
         if (isGame) {
             player.addCardToHand(dealOneCard());
+            oneStep();
+            return true;
+        } else {
+            return false;
         }
-        oneStep();
+
     }
 
     private Card dealOneCard() {
@@ -298,7 +353,7 @@ public class Engine {
         }
     }
 
-    public ArrayList<Card> getShoes() {
+    public List<Card> getShoes() {
         return shoes;
     }
 
@@ -390,12 +445,12 @@ public class Engine {
         return dealPushed;
     }
 
-    public boolean isContinuePushed() {
-        return continuePushed;
+    public boolean isNewGamePushed() {
+        return newGamePushed;
     }
 
-    public void setContinuePushed(boolean continuePushed) {
-        this.continuePushed = continuePushed;
+    public void setNewGamePushed(boolean newGamePushed) {
+        this.newGamePushed = newGamePushed;
     }
 
     public void clearTable() {
@@ -416,13 +471,17 @@ public class Engine {
         bet = 0;
     }
 
-    public void setEnter(boolean enter) {
-        isEnter = enter;
+    public void setSignIn(boolean signIn) {
+        isSignIn = signIn;
     }
 
     public void clearPoints(){
         player.clearSumNumbers();
         dealer.clearSumNumbers();
+    }
+
+    public void setMassage(String str){
+        massage = str;
     }
 
 }

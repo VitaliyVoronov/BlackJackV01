@@ -17,14 +17,14 @@
   ${message}
   <div class="center">
 
-          <form action='/enter' method='get'>
+          <form action='/signIn' method='get'>
               <label for='name'>Name</label>
               <input required type='text' name='name'>
 
               <label for='password'>Password</label>
               <input required type='password' name='password'>
 
-              <input type='submit' value='Enter' name="action"/>
+              <input type='submit' value='Sign in' name="action"/>
           </form>
           <form action='/registration' method='get'>
               <input type='submit' value='Registration' name='action'/>
@@ -33,7 +33,7 @@
               <input type='submit' value='Settings' name='action'/>
           </form>
           <form action='/game' method='get'>
-              <input type='submit' value='NewGame' name='action'/>
+              <input type='submit' value='StartGame' name='action'/>
           </form>
 </div>
   </body>
