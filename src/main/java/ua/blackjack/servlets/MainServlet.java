@@ -1,6 +1,9 @@
 package ua.blackjack.servlets;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import ua.blackjack.engine.Engine;
 import ua.blackjack.model.Card;
 import ua.blackjack.model.Player;
@@ -19,46 +22,52 @@ import java.util.List;
  * @project BlackJackV01
  * @since 3/25/17
  */
-
+@Controller
 public class MainServlet extends HttpServlet {
 
     final static Logger logger = Logger.getLogger(MainServlet.class);
 
     private Engine engine = new Engine();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getRequestURI().equals("/main")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            dispatcher.forward(request, response);
-
-        } else if (request.getRequestURI().equals("/signIn")){
-            signIn(request, response);
-
-        } else if (request.getRequestURI().equals("/registration")){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
-            dispatcher.forward(request, response);
-
-        } else if (request.getRequestURI().equals("/signup")) {
-            signUp(request, response);
-
-        } else if (request.getRequestURI().equals("/settings")) {
-            settings(request,response);
-
-        } else if (request.getRequestURI().equals("/saveSettings")) {
-            saveSettings(request,response);
-
-        //Game jsp
-        } else if (request.getRequestURI().equals("/game")) {
-            game(request,response);
-
-        } else if (request.getRequestURI().equals("/login")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            dispatcher.forward(request, response);
-
-        }
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String login(){
+        return "login";
     }
 
-    public void signIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        if(request.getRequestURI().equals("/main")) {
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+//            dispatcher.forward(request, response);
+//
+//        } else if (request.getRequestURI().equals("/signIn")){
+//            signIn(request, response);
+//
+//        } else if (request.getRequestURI().equals("/registration")){
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
+//            dispatcher.forward(request, response);
+//
+//        } else if (request.getRequestURI().equals("/signup")) {
+//            signUp(request, response);
+//
+//        } else if (request.getRequestURI().equals("/settings")) {
+//            settings(request,response);
+//
+//        } else if (request.getRequestURI().equals("/saveSettings")) {
+//            saveSettings(request,response);
+//
+//        //Game jsp
+//        } else if (request.getRequestURI().equals("/game")) {
+//            game(request,response);
+//
+//        } else if (request.getRequestURI().equals("/login")) {
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+//            dispatcher.forward(request, response);
+//
+//        }
+//    }
+
+    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+    public String signIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.trace("Try to sign in: "+request.getParameter("name"));
         if (engine.signIn(request.getParameter("name"),request.getParameter("password"))){
             logger.trace("Entered: "+request.getParameter("name"));
@@ -66,43 +75,52 @@ public class MainServlet extends HttpServlet {
             //request.getSession().setAttribute("engine", engine);
             String message = "User " + engine.getPlayer().getName()+"; Email: "+ engine.getPlayer().getEmail();
             request.getSession().setAttribute("message", message);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            dispatcher.forward(request, response);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+//            dispatcher.forward(request, response);
+            return "login";
 
         } else {
             String message = "Incorrect login or password";
             request.setAttribute("message", message);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            dispatcher.forward(request, response);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+//            dispatcher.forward(request, response);
+            return "login";
         }
     }
 
-    public void signUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String signUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         engine.signUp(request.getParameter("nameReg"),
                 request.getParameter("  passwordReg"),
                 request.getParameter("emailReg"));
         request.setAttribute("message", engine.getMassage());
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
-        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
+//        dispatcher.forward(request, response);
+
+        return "registration";
     }
 
-    public void settings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @RequestMapping(value = "/settings", method = RequestMethod.GET)
+    public String settings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String message = "";
         if (engine.isSignIn()) {
             message = "Fill in all the fields.";
             request.setAttribute("message", message);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
-            dispatcher.forward(request, response);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
+//            dispatcher.forward(request, response);
+            return "settings";
         } else {
             message = "No sign in!";
             request.setAttribute("message", message);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            dispatcher.forward(request, response);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+//            dispatcher.forward(request, response);
+            return "login";
         }
     }
 
-    public void saveSettings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @RequestMapping(value = "/saveSettings", method = RequestMethod.GET)
+    public String saveSettings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String message = "";
         int decks = Integer.parseInt(request.getParameter("decks"));
         int minBet = Integer.parseInt(request.getParameter("minBet"));
@@ -119,11 +137,13 @@ public class MainServlet extends HttpServlet {
         }
 
         request.setAttribute("message", message);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
-        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
+//        dispatcher.forward(request, response);
+        return "settings";
     }
 
-    public void game(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @RequestMapping(value = "/game", method = RequestMethod.GET)
+    public String game(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (engine.isSignIn()) {
             Player player = engine.getPlayer();
             Player dealer = engine.getDealer();
@@ -192,17 +212,19 @@ public class MainServlet extends HttpServlet {
             request.setAttribute("message", engine.getMassage());
             request.getSession().setAttribute("money", player.getMoney());
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
-            dispatcher.forward(request, response);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
+//            dispatcher.forward(request, response);
+            return "game";
         } else {
             String message = "No sign in!";
             request.setAttribute("message", message);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            dispatcher.forward(request, response);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+//            dispatcher.forward(request, response);
+            return "login";
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//    }
 }

@@ -60,7 +60,7 @@
             <form method="get" action="/game">
                 <input  name="action" type="submit" value="New game" >
             </form>
-            <form method="get" action="login.jsp">
+            <form method="get" action="/">
                 <input  name="action" type="submit" value="Main menu" >
             </form>
             Player's settings: ${playerSettings}
