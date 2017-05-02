@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>BlackJack</title>
-    <link href="styleGame.css" type="text/css" rel="stylesheet"/>
+    <link href="../../../resources/css/game.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
     <div id="border">
@@ -60,7 +60,7 @@
             <form method="get" action="/game">
                 <input  name="action" type="submit" value="New game" >
             </form>
-            <form method="get" action="/">
+            <form method="get" action="/menu">
                 <input  name="action" type="submit" value="Main menu" >
             </form>
             Player's settings: ${playerSettings}

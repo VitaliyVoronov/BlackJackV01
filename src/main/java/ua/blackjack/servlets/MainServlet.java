@@ -2,13 +2,15 @@ package ua.blackjack.servlets;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import ua.blackjack.engine.Engine;
 import ua.blackjack.model.Card;
 import ua.blackjack.model.Player;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author vitaliy
@@ -30,8 +33,8 @@ public class MainServlet extends HttpServlet {
     private Engine engine = new Engine();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String login(){
-        return "login";
+    public ModelAndView login(){
+        return new ModelAndView("login", "player", new Player());
     }
 
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,8 +69,17 @@ public class MainServlet extends HttpServlet {
 //        }
 //    }
 
+    @RequestMapping(value = "/checkPlayer", method = RequestMethod.POST)
+    public ModelAndView checkPlayer(@ModelAttribute("player") Player player){
+        if (engine.signIn(player.getName(), player.getPassword())){
+            return new ModelAndView("menu","player", engine.getPlayer());
+        } else {
+            return new ModelAndView("login", "message", engine.getMessage());
+        }
+    }
+
     @RequestMapping(value = "/signIn", method = RequestMethod.GET)
-    public String signIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String signIn(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException {
         logger.trace("Try to sign in: "+request.getParameter("name"));
         if (engine.signIn(request.getParameter("name"),request.getParameter("password"))){
             logger.trace("Entered: "+request.getParameter("name"));
@@ -88,17 +100,17 @@ public class MainServlet extends HttpServlet {
         }
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        engine.signUp(request.getParameter("nameReg"),
-                request.getParameter("  passwordReg"),
-                request.getParameter("emailReg"));
-        request.setAttribute("message", engine.getMassage());
+    @RequestMapping(value = "/registrationForm", method = RequestMethod.GET)
+    public ModelAndView registrationForm() {
+        return new ModelAndView("registration", "player", new Player());
+    }
 
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
-//        dispatcher.forward(request, response);
-
-        return "registration";
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+    public ModelAndView signUp(@ModelAttribute("player") Player player) {
+        engine.signUp(player.getName(),
+                player.getPassword(),
+                player.getEmail());
+        return new ModelAndView("registration", "message", engine.getMessage());
     }
 
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
@@ -209,7 +221,7 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("moneyPlayer", player.getMoney());
             }
             request.setAttribute("playerSettings", player.getSettings().getInfoSettings());
-            request.setAttribute("message", engine.getMassage());
+            request.setAttribute("message", engine.getMessage());
             request.getSession().setAttribute("money", player.getMoney());
 
 //            RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");

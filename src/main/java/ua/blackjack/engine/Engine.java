@@ -29,7 +29,7 @@ public class Engine {
     private List<Card> shoes;
     private Player dealer;
     private Player player;
-    private String massage;
+    private String message;
     private boolean standPushed;
     private boolean dealPushed;
     private boolean newGamePushed;
@@ -41,7 +41,7 @@ public class Engine {
     public Engine() {
         newGamePushed = true;
         isGame = false;
-        massage = "";
+        message = "";
         shoes = new ArrayList();
         dealer = (Player) ctx.getBean("dealer");
         filePath = getClass().getResource("/playerSettings.xml").getPath();
@@ -56,10 +56,10 @@ public class Engine {
             clearBet();
             clearPoints();
             setGameFalse();
-            setMassage("Make your bet!");
+            setMessage("Make your bet!");
             return true;
         } else {
-            setMassage("End current game!");
+            setMessage("End current game!");
             return false;
         }
     }
@@ -95,7 +95,7 @@ public class Engine {
             }
             return true;
         } else {
-            setMassage("Deal cards when start new game!");
+            setMessage("Deal cards when start new game!");
             return false;
         }
     }
@@ -124,6 +124,7 @@ public class Engine {
             setSignIn(true);
             return true;
         } else {
+            setMessage("Incorrect login or password!");
             return false;
         }
     }
@@ -169,7 +170,7 @@ public class Engine {
      */
     public boolean signUp(String login, String password, String email){
         if(!isAvailableLogin(login)){
-            setMassage("This login is busy!");
+            setMessage("This login is busy!");
             logger.debug("Login is busy!");
             return false;
         }
@@ -180,6 +181,7 @@ public class Engine {
             setDefaultSettings();
             saveNewSettingsToXML(player.getSettings());
             player = null;
+            setMessage("Registration completed successfully!");
             return true;
         }
         logger.debug("Fail to add new player to DB!");
@@ -306,10 +308,10 @@ public class Engine {
             oneStep();
             return true;
         } else if (bet < player.getSettings().getMinBet()) {
-            massage = "Your Bet is to small! Min bet is: " + player.getSettings().getMinBet();
+            message = "Your Bet is to small! Min bet is: " + player.getSettings().getMinBet();
             return false;
         } else if (bet > player.getSettings().getMaxBet()) {
-            massage = "Your Bet is to big! Max bet is: " + player.getSettings().getMaxBet();
+            message = "Your Bet is to big! Max bet is: " + player.getSettings().getMaxBet();
             return false;
         }
         return false;
@@ -345,9 +347,9 @@ public class Engine {
     //TODO Wrong way, it is should be service method for engine
     public void takeMoneyFromPlayerToBet(int moneyToBet) {
         if (moneyToBet > player.getMoney()) {
-            massage = "You have not enough money!";
+            message = "You have not enough money!";
         } else if ((moneyToBet + bet) > player.getSettings().getMaxBet()) {
-            massage = "Max bet: " + player.getSettings().getMaxBet();
+            message = "Max bet: " + player.getSettings().getMaxBet();
         } else {
             setBet(player.takeMoney(moneyToBet));
         }
@@ -390,35 +392,35 @@ public class Engine {
     public void checkSumPlayerAndDealer() {
         if (player.getSumNumbers() > 21) {
             isGame = false;
-            massage = "Game over. You lose!";
+            message = "Game over. You lose!";
             isWin = false;
         }
         if (dealer.getSumNumbers() > 21 && player.getSumNumbers() <= 21) {
             isGame = false;
-            massage = "Game over. You won!";
+            message = "Game over. You won!";
             isWin = true;
         }
         if (player.getSumNumbers() == 21) {
             isGame = false;
-            massage = "Game over. You win! BlackJack";
+            message = "Game over. You win! BlackJack";
             isWin = true;
         }
 
         if (dealer.getSumNumbers() == 21) {
             isGame = false;
-            massage = "Game over. You lose!";
+            message = "Game over. You lose!";
             isWin = false;
         }
 
         if (player.getSumNumbers() > dealer.getSumNumbers() && player.getSumNumbers() <= 21 && !isGame) {
 //            isGame = false;
-            massage = "Game over. You won!";
+            message = "Game over. You won!";
             isWin = true;
         }
     }
 
-    public String getMassage() {
-        return massage;
+    public String getMessage() {
+        return message;
     }
 
     public void setBet(int bet) {
@@ -480,8 +482,8 @@ public class Engine {
         dealer.clearSumNumbers();
     }
 
-    public void setMassage(String str){
-        massage = str;
+    public void setMessage(String str){
+        message = str;
     }
 
 }
