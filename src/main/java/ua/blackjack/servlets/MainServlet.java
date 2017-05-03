@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.blackjack.engine.Engine;
 import ua.blackjack.model.Card;
+import ua.blackjack.model.MySettings;
 import ua.blackjack.model.Player;
 
 import javax.servlet.ServletException;
@@ -79,6 +80,11 @@ public class MainServlet extends HttpServlet {
         }
     }
 
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    public ModelAndView menu(){
+        return new ModelAndView("menu", "player", engine.getPlayer());
+    }
+
 //    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
 //    public String signIn(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException {
 //        logger.trace("Try to sign in: "+request.getParameter("name"));
@@ -115,44 +121,36 @@ public class MainServlet extends HttpServlet {
     }
 
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
-    public String settings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String message = "";
+    public ModelAndView settings() {
         if (engine.isSignIn()) {
-            message = "Fill in all the fields.";
-            request.setAttribute("message", message);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
-//            dispatcher.forward(request, response);
-            return "settings";
+            return new ModelAndView("settings", "settings", new MySettings());
         } else {
-            message = "No sign in!";
-            request.setAttribute("message", message);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//            dispatcher.forward(request, response);
-            return "login";
+            return null;
         }
     }
 
-    @RequestMapping(value = "/saveSettings", method = RequestMethod.GET)
-    public String saveSettings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String message = "";
-        int decks = Integer.parseInt(request.getParameter("decks"));
-        int minBet = Integer.parseInt(request.getParameter("minBet"));
-        int maxBet = Integer.parseInt(request.getParameter("maxBet"));
-        int money = Integer.parseInt(request.getParameter("moneySet"));
-
-        if (decks != 0 && minBet != 0 && maxBet != 0 && money != 0){
-            logger.debug("Try to change settings!");
-            engine.changeSettings(decks,minBet,maxBet,money);
-            logger.debug("Settings changed!");
-            message = "Settings completed successfully!";
-        } else {
-            message = "Fill in all the fields.";
-        }
-
-        request.setAttribute("message", message);
+    @RequestMapping(value = "/saveSettings", method = RequestMethod.POST)
+    public ModelAndView saveSettings(@ModelAttribute("settings") MySettings settings) {
+        engine.changeSettings(settings);
+//        String message = "";
+//        int decks = Integer.parseInt(request.getParameter("decks"));
+//        int minBet = Integer.parseInt(request.getParameter("minBet"));
+//        int maxBet = Integer.parseInt(request.getParameter("maxBet"));
+//        int money = Integer.parseInt(request.getParameter("moneySet"));
+//
+//        if (decks != 0 && minBet != 0 && maxBet != 0 && money != 0){
+//            logger.debug("Try to change settings!");
+//            engine.changeSettings(decks,minBet,maxBet,money);
+//            logger.debug("Settings changed!");
+//            message = "Settings completed successfully!";
+//        } else {
+//            message = "Fill in all the fields.";
+//        }
+//
+//        request.setAttribute("message", message);
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
 //        dispatcher.forward(request, response);
-        return "settings";
+        return new ModelAndView("settings", "message", engine.getMessage());
     }
 
     @RequestMapping(value = "/game", method = RequestMethod.GET)

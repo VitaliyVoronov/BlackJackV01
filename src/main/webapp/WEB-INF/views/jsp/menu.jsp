@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-6 col-sm-offset-3">
-                                        <a href="/logOut" type="button" name="logOut" id="login-submit" tabindex="4" class="form-control btn btn-login">Log out</a>
+                                        <a href="/" type="button" name="logOut" id="login-submit" tabindex="4" class="form-control btn btn-login">Log out</a>
                                     </div>
                                 </div>
                             </div>

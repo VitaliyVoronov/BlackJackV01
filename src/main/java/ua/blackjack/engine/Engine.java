@@ -228,19 +228,17 @@ public class Engine {
 
     /**
      * When player set new settings its change in player and save in xml file
-     * @param decks
-     * @param minBet
-     * @param maxBet
-     * @param money
+     * @param settings
      * @return true if all OK and false if something wrong
      */
-    public boolean changeSettings(int decks, int minBet, int maxBet, int money){
+    public boolean changeSettings(MySettings settings){
         if (player != null) {
-            player.getSettings().setDecks(decks);
-            player.getSettings().setMinBet(minBet);
-            player.getSettings().setMaxBet(maxBet);
-            player.getSettings().setMoney(money);
+            player.getSettings().setDecks(settings.getDecks());
+            player.getSettings().setMinBet(settings.getMinBet());
+            player.getSettings().setMaxBet(settings.getMaxBet());
+            player.getSettings().setMoney(settings.getMoney());
             saveNewSettingsToXML(player.getSettings());
+            setMessage("Settings changed successful!");
             return true;
         }
         return false;
