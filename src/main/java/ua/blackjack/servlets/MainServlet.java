@@ -30,10 +30,11 @@ public class MainServlet extends HttpServlet {
 
     final static Logger logger = Logger.getLogger(MainServlet.class);
 
-    private Engine engine = new Engine();
+    private Engine engine;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView login(){
+        engine = new Engine();
         return new ModelAndView("login", "player", new Player());
     }
 
@@ -78,27 +79,27 @@ public class MainServlet extends HttpServlet {
         }
     }
 
-    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
-    public String signIn(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException {
-        logger.trace("Try to sign in: "+request.getParameter("name"));
-        if (engine.signIn(request.getParameter("name"),request.getParameter("password"))){
-            logger.trace("Entered: "+request.getParameter("name"));
-            //TODO Why I transfer engine?
-            //request.getSession().setAttribute("engine", engine);
-            String message = "User " + engine.getPlayer().getName()+"; Email: "+ engine.getPlayer().getEmail();
-            request.getSession().setAttribute("message", message);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//            dispatcher.forward(request, response);
-            return "login";
-
-        } else {
-            String message = "Incorrect login or password";
-            request.setAttribute("message", message);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//            dispatcher.forward(request, response);
-            return "login";
-        }
-    }
+//    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+//    public String signIn(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException {
+//        logger.trace("Try to sign in: "+request.getParameter("name"));
+//        if (engine.signIn(request.getParameter("name"),request.getParameter("password"))){
+//            logger.trace("Entered: "+request.getParameter("name"));
+//            //TODO Why I transfer engine?
+//            //request.getSession().setAttribute("engine", engine);
+//            String message = "User " + engine.getPlayer().getName()+"; Email: "+ engine.getPlayer().getEmail();
+//            request.getSession().setAttribute("message", message);
+////            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+////            dispatcher.forward(request, response);
+//            return "login";
+//
+//        } else {
+//            String message = "Incorrect login or password";
+//            request.setAttribute("message", message);
+////            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+////            dispatcher.forward(request, response);
+//            return "login";
+//        }
+//    }
 
     @RequestMapping(value = "/registrationForm", method = RequestMethod.GET)
     public ModelAndView registrationForm() {

@@ -5,8 +5,8 @@
 <html>
 <head>
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/resources/css/loginAndRegistration.css" rel="stylesheet">
-
+    <link href="/resources/css/core.css" rel="stylesheet">
+    <title>Registration</title>
 </head>
 <body>
 <div class="container">
