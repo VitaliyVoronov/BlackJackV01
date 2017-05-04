@@ -2,7 +2,6 @@ package ua.blackjack.servlets;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author vitaliy
@@ -31,45 +29,12 @@ public class MainServlet extends HttpServlet {
 
     final static Logger logger = Logger.getLogger(MainServlet.class);
 
-    private Engine engine;
+    private Engine engine = new Engine();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView login(){
-        engine = new Engine();
         return new ModelAndView("login", "player", new Player());
     }
-
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        if(request.getRequestURI().equals("/main")) {
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//            dispatcher.forward(request, response);
-//
-//        } else if (request.getRequestURI().equals("/signIn")){
-//            signIn(request, response);
-//
-//        } else if (request.getRequestURI().equals("/registration")){
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
-//            dispatcher.forward(request, response);
-//
-//        } else if (request.getRequestURI().equals("/signup")) {
-//            signUp(request, response);
-//
-//        } else if (request.getRequestURI().equals("/settings")) {
-//            settings(request,response);
-//
-//        } else if (request.getRequestURI().equals("/saveSettings")) {
-//            saveSettings(request,response);
-//
-//        //Game jsp
-//        } else if (request.getRequestURI().equals("/game")) {
-//            game(request,response);
-//
-//        } else if (request.getRequestURI().equals("/login")) {
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//            dispatcher.forward(request, response);
-//
-//        }
-//    }
 
     @RequestMapping(value = "/checkPlayer", method = RequestMethod.POST)
     public ModelAndView checkPlayer(@ModelAttribute("player") Player player){
@@ -84,28 +49,6 @@ public class MainServlet extends HttpServlet {
     public ModelAndView menu(){
         return new ModelAndView("menu", "player", engine.getPlayer());
     }
-
-//    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
-//    public String signIn(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException {
-//        logger.trace("Try to sign in: "+request.getParameter("name"));
-//        if (engine.signIn(request.getParameter("name"),request.getParameter("password"))){
-//            logger.trace("Entered: "+request.getParameter("name"));
-//            //TODO Why I transfer engine?
-//            //request.getSession().setAttribute("engine", engine);
-//            String message = "User " + engine.getPlayer().getName()+"; Email: "+ engine.getPlayer().getEmail();
-//            request.getSession().setAttribute("message", message);
-////            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-////            dispatcher.forward(request, response);
-//            return "login";
-//
-//        } else {
-//            String message = "Incorrect login or password";
-//            request.setAttribute("message", message);
-////            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-////            dispatcher.forward(request, response);
-//            return "login";
-//        }
-//    }
 
     @RequestMapping(value = "/registrationForm", method = RequestMethod.GET)
     public ModelAndView registrationForm() {
@@ -132,37 +75,27 @@ public class MainServlet extends HttpServlet {
     @RequestMapping(value = "/saveSettings", method = RequestMethod.POST)
     public ModelAndView saveSettings(@ModelAttribute("settings") MySettings settings) {
         engine.changeSettings(settings);
-//        String message = "";
-//        int decks = Integer.parseInt(request.getParameter("decks"));
-//        int minBet = Integer.parseInt(request.getParameter("minBet"));
-//        int maxBet = Integer.parseInt(request.getParameter("maxBet"));
-//        int money = Integer.parseInt(request.getParameter("moneySet"));
-//
-//        if (decks != 0 && minBet != 0 && maxBet != 0 && money != 0){
-//            logger.debug("Try to change settings!");
-//            engine.changeSettings(decks,minBet,maxBet,money);
-//            logger.debug("Settings changed!");
-//            message = "Settings completed successfully!";
-//        } else {
-//            message = "Fill in all the fields.";
-//        }
-//
-//        request.setAttribute("message", message);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("settings.jsp");
-//        dispatcher.forward(request, response);
         return new ModelAndView("settings", "message", engine.getMessage());
     }
 
+    @RequestMapping(value = "/startGame", method = RequestMethod.GET)
+    public ModelAndView startGame(@ModelAttribute("settings") MySettings settings) {
+        engine.startGame();
+        return new ModelAndView("game", "message", engine.getMessage());
+    }
+
+
     @RequestMapping(value = "/game", method = RequestMethod.GET)
     public String game(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         if (engine.isSignIn()) {
             Player player = engine.getPlayer();
             Player dealer = engine.getDealer();
             String query = "" + request.getQueryString();
 
-            if (query.equals("action=StartGame")) {
-                engine.startGame();
-            }
+//            if (query.equals("action=StartGame")) {
+//                engine.startGame();
+//            }
 
             if (query.equals("action=DEAL")) {
                 engine.deal();
@@ -235,7 +168,4 @@ public class MainServlet extends HttpServlet {
         }
     }
 
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//    }
 }

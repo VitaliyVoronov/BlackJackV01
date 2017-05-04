@@ -306,10 +306,10 @@ public class Engine {
             oneStep();
             return true;
         } else if (bet < player.getSettings().getMinBet()) {
-            message = "Your Bet is to small! Min bet is: " + player.getSettings().getMinBet();
+            setMessage("Your Bet is to small! Min bet is: " + player.getSettings().getMinBet());
             return false;
         } else if (bet > player.getSettings().getMaxBet()) {
-            message = "Your Bet is to big! Max bet is: " + player.getSettings().getMaxBet();
+            setMessage("Your Bet is to big! Max bet is: " + player.getSettings().getMaxBet());
             return false;
         }
         return false;

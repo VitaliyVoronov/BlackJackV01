@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-6 col-sm-offset-3">
-                                        <a href="/game" type="button" name="startGame" id="startGame" tabindex="2" class="form-control btn btn-login">Start game</a>
+                                        <a href="/startGame" type="button" id="startGame" tabindex="2" class="form-control btn btn-login">Start game</a>
                                     </div>
                                 </div>
                             </div>
