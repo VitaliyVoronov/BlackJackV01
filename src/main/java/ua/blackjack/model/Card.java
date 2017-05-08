@@ -25,9 +25,9 @@ public class Card {
 	 * @param suit like "c" it's Cross
 	 */
 	public Card(String dignity, String suit) {
-	    //TODO It's not good idea. All path I need store in engine or perhaps in special file
-		face  = "resources/images/";
-		shirt = "resources/images/shirt.png";
+	    //TODO It's not good idea. All path I need store in engine
+		face  = "/resources/images/";
+		shirt = "/resources/images/shirt.png";
 		this.dignity = dignity;
 		this.suit = suit;
 		setNumber();

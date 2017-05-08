@@ -93,6 +93,13 @@ public class Engine {
                 setNewGamePushed(false);
                 setGameTrue();
             }
+            setMessage("Push hit or stand!");
+            if (player.getSumNumbers() == 21){
+                isGame = false;
+                bet += bet/2;
+                setMessage("BlackJack");
+                isWin = true;
+            }
             return true;
         } else {
             setMessage("Deal cards when start new game!");
@@ -273,6 +280,7 @@ public class Engine {
         mixShoes();
         player.clearHand();
         dealer.clearHand();
+        setMessage("Make your bet!");
     }
     //Service method for engine. Name method tell all
     private void createDecksAndAddToShoes(int num) {
@@ -302,8 +310,8 @@ public class Engine {
             player.addCardToHand(dealOneCard());
             dealer.addCardToHand(dealOneCard());
             player.addCardToHand(dealOneCard());
-            dealer.addCardToHand(dealOneCard());
-            oneStep();
+//            dealer.addCardToHand(dealOneCard());
+//            oneStep();
             return true;
         } else if (bet < player.getSettings().getMinBet()) {
             setMessage("Your Bet is to small! Min bet is: " + player.getSettings().getMinBet());
@@ -338,6 +346,9 @@ public class Engine {
 
     public void bet(int moneyToBet){
         takeMoneyFromPlayerToBet(moneyToBet);
+        if (moneyToBet >= player.getSettings().getMinBet()){
+            setMessage("Push deal to continue!");
+        }
     }
 
 //    ________________________________________________________________
@@ -374,45 +385,52 @@ public class Engine {
     }
 
     public void dealCardsToDealer() {
-        while (true) {
-            if (dealer.getSumNumbers() < 17) {
-                dealer.addCardToHand(dealOneCard());
-                oneStep();
-            } else if (dealer.getSumNumbers() >= 17) {
-                break;
-            }
-            oneStep();
+        while (dealer.getSumNumbers() < 17) {
+            dealer.addCardToHand(dealOneCard());
+//            if (dealer.getSumNumbers() < 17) {
+//                dealer.addCardToHand(dealOneCard());
+//                oneStep();
+//            } else if (dealer.getSumNumbers() >= 17) {
+//                break;
+//            }
+//            oneStep();
         }
         oneStep();
 
     }
-
+    //TODO I do not like this method
     public void checkSumPlayerAndDealer() {
         if (player.getSumNumbers() > 21) {
             isGame = false;
-            message = "Game over. You lose!";
+            setMessage("Game over. You lose!");
             isWin = false;
         }
         if (dealer.getSumNumbers() > 21 && player.getSumNumbers() <= 21) {
             isGame = false;
-            message = "Game over. You won!";
+            setMessage("Game over. You won!");
             isWin = true;
         }
         if (player.getSumNumbers() == 21) {
             isGame = false;
-            message = "Game over. You win! BlackJack";
+            setMessage("Game over. You won! BlackJack");
+            bet += bet/2;
             isWin = true;
         }
 
         if (dealer.getSumNumbers() == 21) {
             isGame = false;
-            message = "Game over. You lose!";
+            setMessage("Game over. You lose!");
             isWin = false;
         }
 
-        if (player.getSumNumbers() > dealer.getSumNumbers() && player.getSumNumbers() <= 21 && !isGame) {
+        if (!isGame && player.getSumNumbers() < dealer.getSumNumbers() && dealer.getSumNumbers() < 21){
+            setMessage("You lose!");
+            isWin = false;
+        }
+
+        if (player.getSumNumbers() > dealer.getSumNumbers() && player.getSumNumbers() < 21 && !isGame) {
 //            isGame = false;
-            message = "Game over. You won!";
+            setMessage("Game over. You won!");
             isWin = true;
         }
     }

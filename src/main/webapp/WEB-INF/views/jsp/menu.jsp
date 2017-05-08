@@ -14,7 +14,7 @@
     <title>Menu</title>
 </head>
 <body>
-<div class="container">
+<div class="container-table">
     <div class="row">
         <img src="/resources/images/blackjack2.png" id="blackjackimg">
         <div class="col-md-6 col-md-offset-3">
@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-6 col-sm-offset-3">
-                                        <a href="/startGame" type="button" id="startGame" tabindex="2" class="form-control btn btn-login">Start game</a>
+                                        <a href="/game/start" type="button" id="startGame" tabindex="2" class="form-control btn btn-login">Start game</a>
                                     </div>
                                 </div>
                             </div>

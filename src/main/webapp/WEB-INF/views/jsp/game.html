@@ -2,26 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/gamehtml.css" type="text/css" rel="stylesheet">
     <title>Game</title>
 </head>
 <body>
+<div class="container">
 <div class="header">
     <div class="message-block">
 
     </div>
-    <div class="medium-block"></div>
-    <div class="player-info-block"></div>
+    <div class="medium-block">
+
+    </div>
+    <div class="player-info-block">
+        <h4>Player</h4>
+    </div>
 </div>
-<div class="container">
+<div class="container-table">
     <div class="table">
-        <div class="left-side-block">
-            <div class="inner-side-block" id="shoes">
-
+        <div class="side-block">
+            <div class="inner-side-block" ></div>
+            <div class="inner-side-block" id="bet-block">
+                <!--<input type="image"  class="chip" src="../../../resources/images/chips/1.png" alt="chip" />-->
+                <h4>Bet:</h4>
             </div>
-            <div class="inner-side-block" id="balance">
-
+            <div class="inner-side-block" >
+                <h5>Min bet:</h5>
+                <p></p><h5>Max bet:</h5>
+            </div>
+            <div class="inner-side-block" id="chips-block">
+                <a href="1" data-toggle="modal" data-target="#myModal" class="btn btn-circle btn-primary">1$</a>
+                <a href="5" data-toggle="modal" data-target="#myModal" class="btn btn-circle btn-primary">5$</a>
+                <a href="10" data-toggle="modal" data-target="#myModal" class="btn btn-circle btn-primary">10$</a>
             </div>
         </div>
         <div class="game-part">
@@ -33,11 +46,11 @@
             </div>
 
         </div>
-        <div class="right-side-block">
-            <div class="inner-side-block" id="used-deck-block">
+        <div class="side-block">
+            <div class="inner-side-block" id="shoes">
 
             </div>
-            <div class="inner-side-block" id="bet-block">
+            <div class="inner-side-block" id="balance">
 
             </div>
         </div>
@@ -49,25 +62,17 @@
 
         </div>
         <div class="footer-average-block" >
-            <div class="button" id="deal">
-                <form method="get" action="/game">
-                    <input  name="action" type="submit" class="btn btn-primary btn-block" value="DEAL" >
-                </form>
+            <div class="col-xs-4" id="deal">
+                <a href="deal" role="button" class="btn btn-primary btn-block">DEAL</a>
             </div>
-            <div class="button" id="hit">
-                <form method="get" action="/game">
-                    <input name="action" type="submit" class="btn btn-primary btn-block" value="HIT" >
-                </form>
+            <div class="col-xs-4" id="hit">
+                <a href="hit" role="button" class="btn btn-primary btn-block">HIT</a>
             </div>
-            <div class="button" id="stand">
-                <form method="get" action="/game">
-                    <input  name="action" type="submit" class="btn btn-primary btn-block " value="STAND" >
-                </form>
+            <div class="col-xs-4" id="stand">
+                <a href="stand" role="button" class="btn btn-primary btn-block">STAND</a>
             </div>
-            <div class="button" id="new-game">
-                <form method="get" action="/game">
-                    <input  name="action" type="submit" class="btn btn-primary btn-block" value="New game" >
-                </form>
+            <div class="col-xs-4" id="new-game">
+                <a href="newGame" role="button" class="btn btn-primary btn-block">New game</a>
             </div>
         </div>
         <div class="footer-side-block" >
@@ -76,6 +81,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

@@ -8,7 +8,7 @@
     <title>Settings</title>
 </head>
 <body>
-<div class="container">
+<div class="container-table">
     <div class="row">
         <img src="/resources/images/blackjack2.png" id="blackjackimg">
         <div class="col-md-6 col-md-offset-3">

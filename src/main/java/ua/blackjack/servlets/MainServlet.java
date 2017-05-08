@@ -3,6 +3,7 @@ package ua.blackjack.servlets;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,52 +79,52 @@ public class MainServlet extends HttpServlet {
         return new ModelAndView("settings", "message", engine.getMessage());
     }
 
-    @RequestMapping(value = "/startGame", method = RequestMethod.GET)
-    public ModelAndView startGame(@ModelAttribute("settings") MySettings settings) {
-        engine.startGame();
-        return new ModelAndView("game", "message", engine.getMessage());
-    }
+//    @RequestMapping(value = "/startGame", method = RequestMethod.GET)
+//    public ModelAndView startGame(@ModelAttribute("settings") MySettings settings) {
+//        engine.startGame();
+//
+//        return new ModelAndView("game", "message", engine.getMessage());
+//    }
 
 
-    @RequestMapping(value = "/game", method = RequestMethod.GET)
-    public String game(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @RequestMapping(value = "/game/{action:.+}", method = RequestMethod.GET)
+    public ModelAndView game(@PathVariable("action") String action) {
+        Player player = engine.getPlayer();
+        Player dealer = engine.getDealer();
+        ModelAndView model = new ModelAndView();
 
-        if (engine.isSignIn()) {
-            Player player = engine.getPlayer();
-            Player dealer = engine.getDealer();
-            String query = "" + request.getQueryString();
 
-//            if (query.equals("action=StartGame")) {
-//                engine.startGame();
-//            }
+            if (action.equalsIgnoreCase("start")){
+                engine.startGame();
+            }
 
-            if (query.equals("action=DEAL")) {
+            if (action.equalsIgnoreCase("deal")) {
                 engine.deal();
             }
 
-            if (query.equals("action=New+game")) {
+            if (action.equalsIgnoreCase("newGame")) {
                 engine.newGame();
             }
 
             if(!engine.isDealPushed() && engine.isNewGamePushed()) {
-                if (query.equals("bet=1")) {
+                if (action.equals("1")) {
                     engine.bet(1);
-                } else if (query.equals("bet=5")){
+                } else if (action.equals("5")){
                     engine.bet(5);
 
-                } else if (query.equals("bet=10")) {
+                } else if (action.equals("10")) {
                     engine.bet(10);
                 }
             }
 
-            request.setAttribute("bet", engine.getBet());
+            model.addObject("bet", engine.getBet());
             List<String> listShirt = new ArrayList<>();
             for (Card c : engine.getShoes()) {
                 listShirt.add(c.getShirt());
             }
-            request.setAttribute("shirts", listShirt);
+            model.addObject("shirts", listShirt);
 
-            if (query.equals("action=STAND") && engine.isGame()) {
+            if (action.equalsIgnoreCase("stand") && engine.isGame()) {
                 engine.stand();
             }
 
@@ -133,12 +134,12 @@ public class MainServlet extends HttpServlet {
                     Card c = dealer.getHand().getCards().get(i);
                     cardsDealer.add(c.getFace());
                 }
-                request.setAttribute("nameDealer", dealer.getName());
-                request.setAttribute("cardsDealer", cardsDealer);
-                request.setAttribute("sumNumbersDealer", dealer.getSumNumbers());
+                model.addObject("nameDealer", dealer.getName());
+                model.addObject("cardsDealer", cardsDealer);
+                model.addObject("sumNumbersDealer", dealer.getSumNumbers());
             }
 
-            if (query.equals("action=HIT")) {
+            if (action.equals("hit")) {
                 engine.hit();
             }
             if (engine.isGame() || !engine.isNewGamePushed()) {
@@ -146,26 +147,20 @@ public class MainServlet extends HttpServlet {
                 for (int i = 0; i < player.getHand().getCards().size(); i++) {
                     Card c = player.getHand().getCards().get(i);
                     cardsPlayer.add(c.getFace());
+                    System.out.println(c.getFace());
                 }
-                request.setAttribute("namePlayer", player.getName());
-                request.setAttribute("cardsPlayer", cardsPlayer);
-                request.setAttribute("sumNumbersPlayer", player.getSumNumbers());
-                request.setAttribute("moneyPlayer", player.getMoney());
+                model.addObject("cardsPlayer", cardsPlayer);
+                model.addObject("sumNumbersPlayer", player.getSumNumbers());
             }
-            request.setAttribute("playerSettings", player.getSettings().getInfoSettings());
-            request.setAttribute("message", engine.getMessage());
-            request.getSession().setAttribute("money", player.getMoney());
+        model.addObject("namePlayer", player.getName());
+        model.addObject("moneyPlayer", player.getMoney());
+        model.addObject("playerSettings", player.getSettings().getInfoSettings());
+        model.addObject("message", engine.getMessage());
+        model.addObject("money", player.getMoney());
+        model.addObject("settings", player.getSettings());
 
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
-//            dispatcher.forward(request, response);
-            return "game";
-        } else {
-            String message = "No sign in!";
-            request.setAttribute("message", message);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//            dispatcher.forward(request, response);
-            return "login";
-        }
+        model.setViewName("game");
+        return model;
     }
 
 }
